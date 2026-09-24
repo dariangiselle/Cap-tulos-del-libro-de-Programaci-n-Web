@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Posicionamiento relativo de los elementos. -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Posicionamiento relativo</title>
+        <style type="text/css">
+            .p   { font-size: 1.3em;
+                font-family: verdana, arial, sans-serif; }
+            .span    { color: red;
+                    font-size: 6em;
+                    height: 1em; }
+            .super  { position: relative;
+                top: -1ex; }
+            .sub    { position: relative;
+                    bottom: -1ex; }
+            .desplizq { position: relative; 
+                left: -1ex; }
+            .desplder   { position: relative;
+                    right: -1ex; }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejemplo_5.html">← Anterior</a> | 
+        <a href="../index_cap4.html">Menú del Capítulo 3</a> | 
+        <a href="Ejemplo_7.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <p>El texto al final de esta oraci&oacute;n
+            <span class="super">est&aacute; en super&iacute;ndice</span>.</p>
+        
+        <p>El texto al final de esta oraci&oacute;n
+            <span class="sub">est&aacute; en super&iacute;ndice</span>.</p>
+
+        <p>El texto al final de esta oraci&oacute;n 
+            <span class="desplizq">est&aacute; desplazado a la izquierda</span>.</p>
+
+        <p>El texto al final de esta oraci&oacute;n 
+            <span class="desplder">est&aacute; desplazado a la derecha</span>.</p>
+    </body>
+</html>

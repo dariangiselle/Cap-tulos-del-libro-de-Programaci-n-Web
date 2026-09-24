@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- Ejercicio 4.7 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>4.7 Plantilla de dise&ntilde;o</title>
+        <style type="text/css">
+
+            * {
+                box-sizing: border-box;
+            }
+
+            header {
+                background-color: lightgray;
+                border: 2px solid black;
+                padding: 10px;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            p.columna {
+                float: left;
+                width: 48%;             
+                margin-right: 4%;       
+                background-color: lightblue;
+                border: 2px solid blue;
+                padding: 10px;
+            }
+
+            p.columna:last-of-type {
+                margin-right: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejercicio_6.html">← Anterior</a> | 
+        <a href="../index_cap4.html">Menú del Capítulo 4</a> | 
+        <a href="Ejercicio_8.html">Siguiente →</a>
+        </nav>
+        <hr>
+        
+        <header>
+            <h1>Encabezado de la P&aacute;gina</h1>
+        </header>
+
+        <p class="columna">
+            Este es el primer p&aacute;rrafo que act&uacute;a como la columna izquierda. Al aplicar <code>float: left</code>, el elemento se desplaza 
+            a la izquierda permitiendo que el siguiente contenido se alinee a su lado.
+        </p>
+
+        <p class="columna">
+            Este es el segundo p&aacute;rrafo que act&uacute;a como la columna derecha. Flota justo al lado del primer p&aacute;rrafo gracias a que el ancho 
+            sumado no excede el ancho del contenedor.
+        </p>
+    </body>
+</html>

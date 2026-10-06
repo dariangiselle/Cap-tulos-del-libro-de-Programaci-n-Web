@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- Ejercicio 5.9 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>5.9 Animación</title>
+        <style type="text/css">
+            img
+            {
+                position: relative;
+                -webkit-animation: movingimage linear 10s 1s infinite;
+                -moz-animation: movingimage linear 10s 1s infinite;
+                animation: movingimage linear 10s 1s infinite;
+            }
+            @-webkit-keyframes movingimage
+            {
+                0% {left: 0px; top: 0px;}
+                25% {left: 100px; top: 0px;}
+                50% {left: 100px; top: 100px;}
+                75% {left: 0px; top: 100px;}
+                100% {left: 0px; top: 0px;}
+            }
+            @-moz-keyframes movingimage
+            {
+                0% {left: 0px; top: 0px;}
+                25% {left: 100px; top: 0px;}
+                50% {left: 100px; top: 100px;}
+                75% {left: 0px; top: 100px;}
+                100% {left: 0px; top: 0px;}
+            }
+            @keyframes movingimage
+            {
+                0% {left: 0px; top: 0px;}
+                25% {left: 100px; top: 0px;}
+                50% {left: 100px; top: 100px;}
+                75% {left: 0px; top: 100px;}
+                100% {left: 0px; top: 0px;}
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejercicio_8.html">← Anterior</a> | 
+        <a href="../index_cap5.html">Menú del Capítulo 5</a> | 
+        <a href="Ejercicio_10.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <h3>5.9 Animación</h3>
+        <img src="imagen_ejercicio9/jhtp.png" width="138" height="180"
+            alt="Portada del libro Java How to Program">
+            <div></div>
+    </body>
+</html>

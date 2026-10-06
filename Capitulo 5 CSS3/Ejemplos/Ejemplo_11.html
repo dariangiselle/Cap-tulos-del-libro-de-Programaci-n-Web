@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Transiciones en CSS3. -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Transiciones</title>
+        <style type="text/css">
+            img
+            {
+                margin: 80px;
+                -webkit-transition: -webkit-transform 4s;
+                -moz-transition: -moz-trasnsform 4s;
+                -o-transition: -o-transform 4s;
+                transition: transform 4s;
+            }
+            img:hover
+            {
+                -webkit-transform: rotate(360deg) scale(2, 2);
+                -moz-transform: rotate(360deg) scale(2, 2);
+                -o-transform: rotate(360deg) scale(2, 2);
+                transform: rotate(360deg) scale(2, 2);
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejemplo_10.html">← Anterior</a> | 
+        <a href="../index_cap5.html">Menú del Capítulo 5</a> | 
+        <a href="Ejemplo_12.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <h3>Ejemplo 5.11</h3>
+        
+        <img src="imagen_ejemplo11/cpphtp.png" width="200" height="300"
+            alt="Portada del libro C++ How to Program">
+    </body>
+</html>

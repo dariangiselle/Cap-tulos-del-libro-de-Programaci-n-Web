@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- Ejercicio 5.2 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style type="text/css">
+            h1
+            {
+                color: yellowgreen;
+                -webkit-text-stroke:0.9px black; 
+                font-size: 200%; 
+            }
+            .flexbox
+            {
+                width: 100px;
+                height: 320px;
+                display: -webkit-box;
+                display: box;
+                -webkit-box-orient: horizontal;
+                box-orient: horizontal;
+            }
+            .flexbox > div
+            {
+                -webkit-transition: 1s ease-out;
+                transition: 1s ease-out;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                border: 2px solid blue;
+                width: 120px;
+                margin: 10px -10px 10px 0px;
+                padding: 20px 20px 20px 20px;
+                box-shadow: 10px 10px 10px dimgrey;
+            }
+            .flexbox > div:nth-child(1){ background-color: lightcoral; }
+            .flexbox > div:nth-child(2){ background-color: lightgreen; }
+            .flexbox > div:nth-child(3){ background-color: lightcoral; }
+            .flexbox > div:nth-child(4){ background-color: lightcoral; }
+            .flexbox > div:nth-child(5){ background-color: lightgreen; }
+            .flexbox > div:nth-child(6){ background-color: lightcoral; }
+            .flexbox > div:nth-child(7){ background-color: lightblue; }
+            .flexbox > div:nth-child(8){ background-color: lightblue; }
+            .flexbox > div:nth-child(9){ background-color: lightblue; }
+            .flexbox > div:nth-child(10){ background-color: lightblue; }
+            .flexbox > div:nth-child(11){ background-color: lightblue; }
+            .flexbox > div:nth-child(12){ background-color: lightblue; }
+
+            .flexbox > div:hover {
+                width: 200px; color: white; font-weight: bold; }
+            .flexbox > div:nth-child(1):hover { background-color: red; }
+            .flexbox > div:nth-child(2):hover { background-color: green; }
+            .flexbox > div:nth-child(3):hover { background-color: red; }
+            .flexbox > div:nth-child(4):hover { background-color: red; }
+            .flexbox > div:nth-child(5):hover { background-color: green; }
+            .flexbox > div:nth-child(6):hover { background-color: red; }
+            .flexbox > div:nth-child(7):hover { background-color: yellowgreen; }
+            .flexbox > div:nth-child(8):hover { background-color: orange; }
+            .flexbox > div:nth-child(9):hover { background-color: blue; }
+            .flexbox > div:nth-child(10):hover { background-color: orchid; }
+            .flexbox > div:nth-child(11):hover { background-color: lightseagreen; }
+            .flexbox > div:nth-child(12):hover { background-color: purple; }
+            p { height: 250px; overflow: hidden; font-family: "Rosario"; }
+
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejercicio_1.html">← Anterior</a> | 
+        <a href="../index_cap5.html">Menú del Capítulo 5</a> | 
+        <a href="Ejercicio_3.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <h1>Ejercicio de Autoevaluaci&oacute;n </h1>
+        <h4>5.2 Indique si cada uno de los siguientes enunciados es <em>verdadero</em> o <em>falso</em>. Si es <em>falso</em>, explique por qu&eacute;</h4>
+
+        <div class="flexbox">
+            <div><p>a. La regla @font-face especifica que se utilizar&aacute; una fuente 
+                incrustada cuando el documento se despliegue en una pantalla de computadora.
+                <br><strong>Falso.</strong> La regla @font-face especifica que se utilizar&aacute;
+                una fuente incrustada cuando el documento se despliegue en una pantalla de computadora.</p></div>
+            
+            <div><p>b.  Podemos usar gradientes en cualquier propiedad que acepte una imagen.
+                <br><strong>Verdadero.</strong> Podemos usar gradientes en cualquier propiedad
+                que acepte una imagen.</p></div>
+            
+            <div><p>c. Un gradiente horizontal cambia en forma gradual de arriba hacia abajo.
+                <br><strong>Falso.</strong> Un gradiente horizontal cambia en forma gradual de izquierda 
+                a derecha, no de arriba hacia abajo.</p></div>
+            
+            <div><p>d. Podemos agregar l&iacute;neas entre columnas mediante el uso de la propiedad column-gap.
+                <br><strong>Falso.</strong> La propiedad column-rule permite agregar l&iacute;neas entre columnas, 
+                mientras que column-gap especifica el espacio entre ellas.</p></div>
+            
+            <div><p>e. La regla @media determina el tipo y tama&ntilde;o del dispositivo en el que se despliega la 
+                p&aacute;gina. Cuando el navegador examina la regla, el resultado es verdadero o falso. Los estilos 
+                de la regla se aplican s&oacute;lo si el resultado es falso.
+                <br><strong>Verdadero.</strong> Los estilos de la regla @media se aplican s&oacute;lo 
+                si el resultado es verdadero.</p></div>
+            
+            <div><p>f. Para agregar m&uacute;ltiples im&aacute;genes de fondo a un elemento, usamos la propiedad 
+                background-position para especificar d&oacute;nde colocar cada imagen mediante el uso del modelo de cajas.
+                <br><strong>Falso.</strong> La propiedad background-origin especifica d&oacute;nde 
+                se va a colocar cada imagen mediante el uso del modelo de cajas.</p></div>
+        </div>
+    </body>
+</html>

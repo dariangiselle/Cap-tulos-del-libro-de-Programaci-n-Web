@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- Ejercicio 5.14 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>5.14 Trasnformación con :hover</title>
+        <style type="text/css">
+            .imagenes
+            {
+                display: flex;
+                gap: 20px;
+            }
+
+            .imagenes img
+            {
+                width: 150px;
+                transition: transform 1s;
+            }
+
+            .imagenes img:hover
+            {
+                transform: scale(1.2);
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejercicio_13.html">← Anterior</a> | 
+        <a href="../index_cap5.html">Menú del Capítulo 5</a> | 
+        <a href="Ejercicio_15.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        
+        <h3>5.15 Transformación con :hover</h3>
+
+        <div class="imagenes">
+
+            <img src="imagenes_ejercicio14/gato.png"
+                 alt="gato">
+
+            <img src="imagenes_ejercicio14/koala.png"
+                 alt=" koala">
+
+            <img src="imagenes_ejercicio14/ballena.png"
+                 alt="ballena">
+
+            <img src="imagenes_ejercicio14/panda.png"
+                 alt="panda">
+
+        </div>
+
+    </body>
+</html>

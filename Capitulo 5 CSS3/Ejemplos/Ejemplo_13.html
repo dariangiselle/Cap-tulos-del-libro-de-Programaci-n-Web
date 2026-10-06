@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- Fusionar una imagen en otra mediante CSS3. -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Fusi&oacute;n de im&aacute;genes</title>
+        <style type="text/css">
+            #portada
+            {
+                position: relative;
+                margin: 0 auto;
+            }
+            #portada img
+            {
+                position: absolute;
+                left: 0;
+                -webkit-transition: opacity 4s ease-in-out;
+                transition: opacity 4s ease-in-out;
+            }
+            #portada img.top:hover
+                { opacity: 0; }
+            
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejemplo_12.html">← Anterior</a> | 
+        <a href="../index_cap5.html">Menú del Capítulo 5</a> | 
+        <a href="Ejemplo_14.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <h3>Ejemplo 5.13</h3>
+        
+        <div id="portada">
+            <img class="bottom" src="imagen_ejemplo13/jhtp.png" alt="Portada de Java 9e">
+            <img class="top" src="imagen_ejemplo13/jhtp8.png" alt="Portada de Java 8e">
+        </div>
+    </body>
+</html>

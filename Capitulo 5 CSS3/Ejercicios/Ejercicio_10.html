@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- Ejercicio 5.10 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>5.10 Inclinación</title>
+        <style type="text/css">
+            .skew .textbox
+            {
+                margin-left: 75px;
+                background: lightgreen;
+                height: 100px;
+                width: 200px;
+                padding: 25px 0;
+                text-align: center;
+                font-size: 250%;
+                border: 3px solid darkgreen;
+                border-radius: 15px;
+                -webkit-animation: skew 3s infinite alternate;
+                -moz-animation: skew 3s infinite alternate;
+                animation: skew 3s infinite alternate;
+            }
+            @-webkit-keyframes skew
+            {
+                from { -webkit-transform: skewX(-30deg); }
+                to { -webkit-transform: skewX(30deg); }
+            }
+
+            @-moz-keyframes skew
+            {
+                from { -moz-transform: skewX(-30deg); }
+                to { -moz-transform: skewX(30deg); }
+            }
+
+            @keyframes skew
+            {
+                from { transform: skewX(-30deg); }
+                to { transform: skewX(30deg); }
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejercicio_9.html">← Anterior</a> | 
+        <a href="../index_cap5.html">Menú del Capítulo 5</a> | 
+        <a href="Ejercicio_11.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <h3>5.10 Inclinación</h3>
+        
+        <div class="box skew">
+        <div class="textbox">Inclinar texto</div>
+        </div>
+
+    </body>
+</html>

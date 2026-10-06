@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!-- Ejercicio 5.11 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>5.11 Fusionar imagenes</title>
+
+        <style type="text/css">
+            #portada
+            {
+                position: relative;
+                margin: 0 auto;
+            }
+
+            #portada img
+            {
+                position: absolute;
+                left: 0;
+                transition-property: opacity;
+                transition-duration: 3s;
+                transition-timing-function: linear;
+            }
+
+            #portada img:nth-child(1)
+            {
+                z-index: 5;
+            }
+
+            #portada img:nth-child(2)
+            {
+                z-index: 4;
+            }
+
+            #portada img:nth-child(3)
+            {
+                z-index: 3;
+            }
+
+            #portada img:nth-child(4)
+            {
+                z-index: 2;
+            }
+
+            #portada img:nth-child(5)
+            {
+                z-index: 1;
+            }
+
+            #portada img:nth-child(1):hover,
+            #portada img:nth-child(2):hover,
+            #portada img:nth-child(3):hover,
+            #portada img:nth-child(4):hover
+            {
+                opacity: 0;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Ejercicio_10.html">← Anterior</a> | 
+        <a href="../index_cap5.html">Menú del Capítulo 5</a> |
+        <a href="Ejercicio_12.html">Siguiente →</a>
+        </nav>
+
+        <hr>
+
+        <h3>5.11 Fusionar imágenes</h3>
+
+        <div id="portada">
+            <img src="imagenes_ejercicio11/primavera.png"
+                 alt="Primavera">
+
+            <img src="imagenes_ejercicio11/verano.png"
+                 alt="Verano">
+
+            <img src="imagenes_ejercicio11/otoño.png"
+                 alt="Otoño">
+
+            <img src="imagenes_ejercicio11/invierno.png"
+                 alt="Invierno">
+
+            <img src="imagenes_ejercicio11/normal.png"
+                 alt="Imagen">
+        </div>
+
+    </body>
+</html>

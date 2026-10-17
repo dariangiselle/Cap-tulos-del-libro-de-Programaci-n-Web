@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- Ejercicio 8. 1 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 8.1</title>
+        <script>
+            document.writeln( "<h1>Ejercicio 8.1</h1>" );
+            
+            // a)
+            document.writeln( "<p><b>a) El caso default es requerido en la instrucción switch.</b><br>" );
+            document.writeln( "<b>Respuesta:</b> Falso. El caso <i>default</i> es opcional en una instrucción <i>switch</i>. Si se omite y ninguna de las constantes coincide, simplemente no se ejecuta ninguna acción dentro del switch.</p>" );
+
+            // b)
+            document.writeln( "<p><b>b) La instrucción break es requerida en el último caso de una instrucción switch.</b><br>" );
+            document.writeln( "<b>Respuesta:</b> Falso. El <i>break</i> no es estrictamente obligatorio en el último caso (ni en ningún caso), ya que al ser el final de la estructura el control saldrá del switch de todos modos; sin embargo, se recomienda colocarlo por buena práctica y consistencia.</p>" );
+
+            // c)
+            document.writeln( "<p><b>c) La expresión ( x > y && a < b ) es verdadera si x > y es verdadera, o si a < b es verdadera.</b><br>" );
+            document.writeln( "<b>Respuesta:</b> Falso. Como utiliza el operador lógico AND (<code>&amp;&amp;</code>), la expresión completa es verdadera <b>únicamente si ambas</b> condiciones son verdaderas al mismo tiempo.</p>" );
+
+            // d)
+            document.writeln( "<p><b>d) Una expresión que contiene el operador || es verdadera si uno o ambos de sus operandos son verdaderos.</b><br>" );
+            document.writeln( "<b>Respuesta:</b> Verdadero. El operador lógico OR (<code>||</code>) evalúa como verdadero si al menos uno de los operandos se cumple.</p>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_13.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejercicio_2.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

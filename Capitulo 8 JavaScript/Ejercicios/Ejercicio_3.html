@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Ejercicio 8.3  -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>8. 3</title>
+
+        <script>
+            document.writeln( "<h1>Ejercicio 8.3</h1>" );
+
+            // a)
+            document.writeln( "<p><b>a) Segmento con ciclo while:</b><br>" );
+            document.writeln( "<code>x = 1;<br>while ( x <= 10 );<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;++x;<br>}</code><br>" );
+            document.writeln( "<b>Error y solución:</b> Hay un punto y coma (<code>;</code>) al final de la línea del <code>while</code>. Esto provoca un ciclo infinito vacío, ya que el punto y coma actúa como instrucción nula y el bloque entre llaves nunca se ejecuta en bucle. <b>Solución:</b> Eliminar el punto y coma después del paréntesis del while[cite: 6].</p>" );
+
+            // b)
+            document.writeln( "<p><b>b) Segmento con switch:</b><br>" );
+            document.writeln( "<b>Error y solución:</b> En el <code>case 1</code> falta la instrucción <code>break;</code>. Esto provoca el fenómeno de <i>fall-through</i>, haciendo que si <code>n</code> es 1, ejecute tanto el mensaje del caso 1 como el del caso 2. <b>Solución:</b> Agregar <code>break;</code> al final del <code>case 1</code>[cite: 6].</p>" );
+
+            // c)
+            document.writeln( "<p><b>c) Ciclo while para imprimir del 1 al 10:</b><br>" );
+            document.writeln( "<code>n = 1;<br>while ( n < 10 )<br>&nbsp;&nbsp;&nbsp;&nbsp;document.writeln( n++ );</code><br>" );
+            document.writeln( "<b>Error y solución:</b> La condición dice <code>n < 10</code>, por lo que se detendrá cuando <code>n</code> sea 10 (solo imprimirá del 1 al 9). Además, si se quieren múltiples instrucciones o mantener el estándar, se recomienda usar llaves. <b>Solución:</b> Cambiar la condición a <code>n <= 10</code> para que imprima correctamente hasta el 10[cite: 6].</p>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_2.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejercicio_4.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

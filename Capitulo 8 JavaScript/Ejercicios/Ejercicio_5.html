@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- 8. 5 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>8. 5</title>
+
+        <script type="text/javascript">
+            document.writeln("<h1>Ejercicio 8.5</h1>");
+
+            document.writeln("<p><b>Pregunta:</b> ¿Qué es lo que hace el siguiente programa?</p>");
+
+            // Código de las imágenes que se debe analizar.
+            document.writeln("<pre>");
+            document.writeln("&lt;!DOCTYPE html&gt;");
+            document.writeln("&lt;!-- Ejercicio 8.5: ej08_05.html --&gt;");
+            document.writeln("&lt;html&gt;");
+            document.writeln("    &lt;head&gt;");
+            document.writeln("        &lt;meta charset = \"utf-8\"&gt;");
+            document.writeln("        &lt;title&gt;Misterio&lt;/title&gt;");
+            document.writeln("        &lt;script&gt;");
+            document.writeln("            document.writeln( \"&lt;table&gt;\" );");
+            document.writeln("");
+            document.writeln("            for ( var i = 1; i &lt;= 10; i++ )");
+            document.writeln("            {");
+            document.writeln("                document.writeln( \"&lt;tr&gt;\" );");
+            document.writeln("");
+            document.writeln("                for ( var j = 1; j &lt;= 5; j++ )");
+            document.writeln("                    document.writeln( \"&lt;td&gt;(\" + i + \", \" + j + \")&lt;/td&gt;\" );");
+            document.writeln("");
+            document.writeln("                document.writeln( \"&lt;/tr&gt;\" );");
+            document.writeln("            } // fin de for");
+            document.writeln("");
+            document.writeln("            document.writeln( \"&lt;/table&gt;\" );");
+            document.writeln("        &lt;/script&gt;");
+            document.writeln("    &lt;/head&gt;&lt;body /&gt;");
+            document.writeln("&lt;/html&gt;");
+            document.writeln("</pre>");
+
+            // Respuesta del ejercicio
+            document.writeln("<h2>Respuesta</h2>");
+
+            document.writeln("<p>El programa genera y muestra en formato HTML una <b>tabla de 10 filas por 5 columnas</b>[cite: 9].</p>");
+            document.writeln("<p>En cada celda (<code>&lt;td&gt;</code>) de la tabla imprime las coordenadas correspondientes en formato <b>(i, j)</b>[cite: 9], donde <i>i</i> representa el número de fila (del 1 al 10) y <i>j</i> representa el número de columna (del 1 al 5).</p>");
+        </script>
+        
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_4.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejercicio_6.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

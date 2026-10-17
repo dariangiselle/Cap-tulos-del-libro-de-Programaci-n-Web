@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--  -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        
+        <script>
+            document.writeln( "<h1>Ejercicio 8.12</h1>" );
+            document.writeln( "<p>Suponiendo i = 1, j = 2, k = 3, m = 2:</p>" );
+            
+            var i = 1, j = 2, k = 3, m = 2;
+
+            document.writeln( "<p><b>a) document.writeln( i == 1 );</b> &rarr; Imprime: " + ( i == 1 ) + " (Paréntesis opcionales)</p>" );
+            document.writeln( "<p><b>b) document.writeln( j === 3 );</b> &rarr; Imprime: " + ( j === 3 ) + " (Paréntesis opcionales)</p>" );
+            document.writeln( "<p><b>c) document.writeln( i >= 1 &amp;&amp; j < 4 );</b> &rarr; Imprime: " + ( i >= 1 && j < 4 ) + " (Paréntesis necesarios para separar operadores lógicos)</p>" );
+            document.writeln( "<p><b>d) document.writeln( m <= 99 &amp;&amp; k < m );</b> &rarr; Imprime: " + ( m <= 99 && k < m ) + "</p>" );
+            document.writeln( "<p><b>e) document.writeln( j >= i || k == m );</b> &rarr; Imprime: " + ( j >= i || k == m ) + "</p>" );
+            document.writeln( "<p><b>f) document.writeln( k + m < j || 3 - j >= k );</b> &rarr; Imprime: " + ( k + m < j || 3 - j >= k ) + "</p>" );
+            document.writeln( "<p><b>g) document.writeln( !( k > m ) );</b> &rarr; Imprime: " + ( !( k > m ) ) + " (Paréntesis obligatorios en negación lógica)</p>" );
+
+            document.writeln( "<h1>Ejercicio 8.13</h1>" );
+            document.writeln( "<p><b>Respuesta:</b> Analizando el switch proporcionado[cite: 11]:</p>" );
+            document.writeln( "<ul>" );
+            document.writeln( "<li>Si <b>k = 1</b>: entra al case 1, no hace nada y sale. x toma el valor inicial de k (1).</li>" );
+            document.writeln( "<li>Si <b>k = 2</b>: entra al case 2 (sin break), pasa al case 3, ejecuta <code>++k</code> (k se vuelve 4) y hace break. Luego <code>x = k</code> asigna <b>4</b>.</li>" );
+            document.writeln( "<li>Si <b>k = 3</b>: entra al case 3, ejecuta <code>++k</code> (k se vuelve 4) y hace break. Luego <code>x = k</code> asigna <b>4</b>.</li>" );
+            document.writeln( "<li>Si <b>k = 4</b>: entra al case 4, ejecuta <code>--k</code> (k se vuelve 3) y hace break. Luego <code>x = k</code> asigna <b>3</b>.</li>" );
+            document.writeln( "<li>Si <b>k = 10</b>: cae en el <code>default</code>, ejecuta <code>k *= 3</code> (10 * 3 = 30). Luego <code>x = k</code> asigna <b>30</b>.</li>" );
+            document.writeln( "</ul>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_7.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejercicio_9.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

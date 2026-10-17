@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--  -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        
+        <script>
+            var producto = 1;
+            var i;
+
+            for ( i = 1; i <= 15; i += 2 )
+            {
+                producto *= i;
+            }
+
+            document.writeln( "<h1>Producto de los enteros impares</h1>" );
+            document.writeln( "<p>El producto de los números impares del 1 al 15 es: <strong>" + producto + "</strong></p>" );
+        </script>
+        
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_6.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejercicio_8.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

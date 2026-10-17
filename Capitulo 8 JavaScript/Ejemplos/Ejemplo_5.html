@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- Uso de la intrucción de selección múltiple switch. -->
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Alternar entre formatos de lista de HTML5</title>
+    <script>
+
+        var seleccion; // la selección del usuario
+        var etiquetaInicial; // etiqueta de elemento de lista inicial
+        var etiquetaFinal; // etiqueta de elemento de lista fianl
+        var entradaValida = true; // true si la entrada es válida; falso si no
+        var tipoLista; // tipo de lista como cadena
+
+        seleccion = window.prompt( "Seleccione un estilo de lista:\n" +
+            "1 (numerada), 2 (con letras), 3 (números romanos)", "1" );
+        
+        switch ( seleccion )
+        {
+            case "1":
+                etiquetaInicial = "<ol>";
+                etiquetaFinal = "</ol>";
+                tipoLista = "<h1>Lista numerada</h1>";
+                break;
+            case "2":
+                etiquetaInicial = "<ol style = 'list-style-type: upper-alpha'>";
+                etiquetaFinal = "</ol>";
+                tipoLista = "<h1>Lista con letras</h1>";
+                break;
+            case "3":
+                etiquetaInicial = "<ol style = 'list-style-type: upper-roman'>";
+                etiquetaFinal = "</ol>";
+                tipoLista = "<h1>Lista con números romanos</h1>";
+                break;
+            default: 
+                entradaValida = false;
+                break;
+        } // fin de switch
+
+        if ( entradaValida === true )
+        {
+            document.writeln( tipoLista + etiquetaInicial );
+
+            for ( var i = 1; i <= 3; ++i )
+                document.writeln( "<li>Elemento de lista " + i + "</li>" );
+
+                document.writeln( etiquetaFinal );
+        } //fin de if
+        else
+            document.writeln( "Selección inválida: " + seleccion );
+    </script>
+
+    <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejemplo_4.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejemplo_6.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

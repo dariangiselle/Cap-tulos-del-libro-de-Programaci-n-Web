@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- Ejercicio 8. 4 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>8. 4</title>
+
+        <script>
+            document.writeln( "<h1>Ejercicio 8.4</h1>" );
+
+            // a)
+            document.writeln( "<p><b>a) Segmento con bucle for:</b><br>" );
+            document.writeln( "<code>For ( x = 100, x &gt;= 1, ++x )</code><br>" );
+            document.writeln( "<b>Error y solución:</b> Tiene múltiples errores[cite: 7]. 1) La palabra clave <code>For</code> está con mayúscula inicial cuando debe ser en minúsculas (<code>for</code>). 2) Las tres secciones del ciclo deben ir separadas por <b>puntos y comas (;)</b> y no por comas. 3) Como el ciclo va desde 100 hasta 1 (hacia atrás), el incremento debería ser decremento (<code>--x</code>), de lo contrario crearía un ciclo infinito. <b>Solución:</b> <code>for ( x = 100; x &gt;= 1; --x )</code>.</p>" );
+
+            // b)
+            document.writeln( "<p><b>b) Segmento con switch para par o impar:</b><br>" );
+            document.writeln( "<b>Error y solución:</b> Falta la instrucción <code>break;</code> al final del <code>case 0:</code>[cite: 7]. Debido a esto, si el valor es par, imprimirá \"Entero par\" y luego continuará ejecutando por error el <code>case 1:</code>, imprimiendo también \"Entero impar\". <b>Solución:</b> Agregar <code>break;</code> después de la instrucción del caso 0.</p>" );
+
+            // c)
+            document.writeln( "<p><b>c) Ciclo for para enteros impares del 19 al 1:</b><br>" );
+            document.writeln( "<code>for ( x = 19; x &gt;= 1; x += 2 )</code><br>" );
+            document.writeln( "<b>Error y solución:</b> El operador de incremento es <code>+= 2</code>, lo cual sumará 2 en lugar de restar (haciendo que x suba de 19 en adelante y nunca termine o no baje). Como el conteo va en descenso del 19 al 1, debe decrementar restando 2. <b>Solución:</b> Cambiar a <code>x -= 2</code>.</p>" );
+
+            // d)
+            document.writeln( "<p><b>d) Ciclo do...while para enteros pares del 2 al 100:</b><br>" );
+            document.writeln( "<b>Error y solución:</b> 1) La palabra clave al final es <code>While</code> con mayúscula, y debe ser en minúsculas (<code>while</code>)[cite: 7]. 2) La condición del ciclo dice <code>contador &lt; 100</code>, lo que hará que se detenga antes de imprimir el 100 (se detendrá en 98). Como el ejercicio pide llegar hasta el 100 inclusive, la condición correcta debe incluir el igual. <b>Solución:</b> Cambiar a <code>while ( contador &lt;= 100 );</code>.</p>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_3.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejercicio_5.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

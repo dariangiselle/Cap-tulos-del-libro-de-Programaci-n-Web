@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- Ejercicio 8.2 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>8. 2</title>
+
+        <script>
+            document.writeln( "<h1>Ejercicio 8.2</h1>" );
+
+            // a) Sumar enteros impares entre 1 y 99 usando for
+            var suma = 0;
+            var cuenta;
+            for ( cuenta = 1; cuenta <= 99; cuenta += 2 )
+            {
+                suma += cuenta;
+            }
+            document.writeln( "<p><b>a) Suma de impares del 1 al 99:</b> " + suma + "</p>" );
+
+            // b) Calcular 2.5 elevado a la potencia de 3 usando Math.pow
+            var resultadoPotencia = Math.pow( 2.5, 3 );
+            document.writeln( "<p><b>b) 2.5 elevado a la potencia 3:</b> " + resultadoPotencia + "</p>" );
+
+            // c) Imprimir enteros del 1 al 20 con while, 5 por línea usando x % 5
+            document.writeln( "<p><b>c) Ciclo while (5 enteros por línea):</b></p>" );
+            var x = 1;
+            document.writeln( "<p>" );
+            while ( x <= 20 )
+            {
+                document.writeln( x );
+                
+                if ( x % 5 == 0 && x < 20 )
+                {
+                    document.writeln( "</p><p>" );
+                }
+                else if ( x < 20 )
+                {
+                    document.writeln( " " );
+                }
+                
+                ++x;
+            }
+            document.writeln( "</p>" );
+
+            // d) Repetir el inciso c usando una instrucción for
+            document.writeln( "<p><b>d) Ciclo for (5 enteros por línea):</b></p>" );
+            document.writeln( "<p>" );
+            for ( var i = 1; i <= 20; ++i )
+            {
+                document.writeln( i );
+                
+                if ( i % 5 == 0 && i < 20 )
+                {
+                    document.writeln( "</p><p>" );
+                }
+                else if ( i < 20 )
+                {
+                    document.writeln( " " );
+                }
+            }
+            document.writeln( "</p>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_1.html">← Anterior</a> | ' +
+                '<a href="../index_cap8.html">Menú del Capítulo 8</a> | ' +
+                '<a href="Ejercicio_3.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

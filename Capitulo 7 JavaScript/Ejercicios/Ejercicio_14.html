@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 14 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 14</title>
+
+        <script type="text/javascript">
+            var nombre;
+            var horas;
+            var tarifa;
+            var sueldo;
+            var contador = 1;
+
+            document.writeln("<h1>Sueldos brutos de los empleados</h1>");
+
+            while ( contador <= 3 )
+            {
+                nombre = prompt("Introduzca el nombre del empleado:");
+
+                horas = parseInt(prompt("Introduzca las horas trabajadas:"));
+
+                tarifa = parseFloat(prompt("Introduzca la tarifa por hora:"));
+
+                if ( horas <= 40 )
+                {
+                    sueldo = horas * tarifa;
+                }
+                else
+                {
+                    sueldo = 40 * tarifa + (horas - 40) * tarifa * 1.5;
+                }
+
+                document.writeln("<p>Empleado: " + nombre + "</p>");
+                document.writeln("<p>Sueldo bruto: $" + sueldo.toFixed(2) + "</p>");
+
+                ++contador;
+            }
+        </script>
+        
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_13.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_15.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

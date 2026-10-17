@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 9 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 9</title>
+
+        <script type="text/javascript">
+            document.writeln("<h1>Ejercicio 7.9</h1>");
+
+            document.writeln("<p><b>Instrucción:</b> Identifique y corrija los errores en cada uno de los siguientes segmentos de código. Puede haber más de un error en cada fragmento; a menos que haya declaraciones presentes, suponga que todas las variables están declaradas e inicializadas correctamente.</p>");
+
+            document.writeln("<h3>a)</h3>");
+            document.writeln("<pre>if ( edad >= 65 ) ;\n    document.writeln( \"Edad es mayor o igual que 65\" );\nelse\n    document.writeln( \"Edad es menor que 65\" );</pre>");
+
+            document.writeln("<p><b>Respuesta:</b> Hay dos errores: el punto y coma después de la condición if y la falta de comillas de cierre en el segundo mensaje.</p>");
+
+            document.writeln("<p><b>Corrección:</b></p>");
+            document.writeln("<pre>if ( edad >= 65 )\n    document.writeln( \"Edad es mayor o igual que 65\" );\nelse\n    document.writeln( \"Edad es menor que 65\" );</pre>");
+
+            document.writeln("<h3>b)</h3>");
+            document.writeln("<pre>var x = 1, total;\nwhile ( x <= 10 )\n(\n    total += x;\n    ++x;\n}</pre>");
+
+            document.writeln("<p><b>Respuesta:</b> El error es que se utiliza un paréntesis en lugar de una llave izquierda para iniciar el cuerpo de while. Además, total debe inicializarse en 0 para poder acumular la suma correctamente.</p>");
+
+            document.writeln("<p><b>Corrección:</b></p>");
+            document.writeln("<pre>var x = 1, total = 0;\nwhile ( x <= 10 )\n{\n    total += x;\n    ++x;\n}</pre>");
+
+            document.writeln("<h3>c)</h3>");
+            document.writeln("<pre>var x = 1;\nvar total = 0;\nwhile ( x <= 100 )\n    total += x;\n    ++x;</pre>");
+
+            document.writeln("<p><b>Respuesta:</b> Faltan las llaves para agrupar las dos instrucciones dentro de while. Sin ellas, solamente se repite la instrucción total += x y x nunca aumenta, lo que puede provocar un ciclo infinito.</p>");
+
+            document.writeln("<p><b>Corrección:</b></p>");
+            document.writeln("<pre>var x = 1;\nvar total = 0;\nwhile ( x <= 100 )\n{\n    total += x;\n    ++x;\n}</pre>");
+
+            document.writeln("<h3>d)</h3>");
+            document.writeln("<pre>var x = 5;\nwhile ( y > 0 )\n{\n    document.writeln( y );\n    ++y;\n}</pre>");
+
+            document.writeln("<p><b>Respuesta:</b> Se declara e inicializa x, pero la condición y el cuerpo utilizan y. Además, y aumenta en cada repetición, por lo que la condición y > 0 seguirá siendo verdadera si y comienza siendo positiva.</p>");
+
+            document.writeln("<p><b>Corrección:</b></p>");
+            document.writeln("<pre>var y = 5;\nwhile ( y > 0 )\n{\n    document.writeln( y );\n    --y;\n}</pre>");
+        </script>
+        
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_8.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_10.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

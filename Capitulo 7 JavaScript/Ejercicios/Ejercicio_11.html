@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 11 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 11</title>
+
+        <script type="text/javascript">
+    var kilometros;
+    var litros;
+    var rendimiento;
+    var totalKilometros = 0;
+    var totalLitros = 0;
+
+    kilometros = prompt(
+        "Introduzca los kilómetros conducidos (-1 para terminar):"
+    );
+
+    while ( kilometros != null && kilometros != "-1" )
+    {
+        kilometros = parseFloat(kilometros);
+
+        if ( !isNaN(kilometros) && kilometros > 0 )
+        {
+            litros = prompt("Introduzca los litros de gasolina usados:");
+
+            if ( litros == null )
+            {
+                break;
+            }
+
+            litros = parseFloat(litros);
+
+            if ( !isNaN(litros) && litros > 0 )
+            {
+                rendimiento = kilometros / litros;
+
+                totalKilometros += kilometros;
+                totalLitros += litros;
+
+                document.writeln(
+                    "<p>Rendimiento del viaje: " +
+                    rendimiento.toFixed(2) + " km/l</p>"
+                );
+            }
+            else
+            {
+                alert("Introduzca una cantidad válida de litros.");
+            }
+        }
+        else
+        {
+            alert("Introduzca una cantidad válida de kilómetros.");
+        }
+
+        kilometros = prompt(
+            "Introduzca los kilómetros conducidos (-1 para terminar):"
+        );
+    }
+    if ( totalLitros > 0 )
+    {
+        rendimiento = totalKilometros / totalLitros;
+
+        document.writeln(
+            "<p>Rendimiento total: " +
+            rendimiento.toFixed(2) + " km/l</p>"
+        );
+    }
+</script>
+        
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_10.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_12.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

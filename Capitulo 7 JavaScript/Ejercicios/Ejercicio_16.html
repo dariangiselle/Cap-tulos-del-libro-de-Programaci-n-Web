@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 16 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 16</title>
+
+        <script type="text/javascript">
+            var n; // contador para la variable N
+
+            // Inicio de la tabla HTML5
+            document.writeln( "<table>" );
+            
+            // Encabezados de la tabla
+            document.writeln( "<thead>" );
+            document.writeln( "<tr>" );
+            document.writeln( "<th>N</th>" );
+            document.writeln( "<th>10*N</th>" );
+            document.writeln( "<th>100*N</th>" );
+            document.writeln( "<th>1000*N</th>" );
+            document.writeln( "</tr>" );
+            document.writeln( "</thead>" );
+
+            document.writeln( "<tbody>" );
+
+            // Fase de inicialización
+            n = 1;
+
+            // Fase de procesamiento: ciclo controlado por contador
+            while ( n <= 6 )
+            {
+                document.writeln( "<tr>" );
+                document.writeln( "<td>" + n + "</td>" );
+                document.writeln( "<td>" + ( 10 * n ) + "</td>" );
+                document.writeln( "<td>" + ( 100 * n ) + "</td>" );
+                document.writeln( "<td>" + ( 1000 * n ) + "</td>" );
+                document.writeln( "</tr>" );
+
+                n = n + 1; // incrementar el contador
+            } // fin de while
+
+            document.writeln( "</tbody>" );
+            document.writeln( "</table>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_15.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_17.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 20 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 20</title>
+        
+        <script>
+
+            var entrada;
+            var numero;
+            var esValido = false;
+
+            while ( !esValido )
+            {
+                entrada = window.prompt( "Escriba un número entero de cinco dígitos:", "0" );
+                
+                numero = parseInt( entrada );
+
+                if ( ( numero >= 10000 && numero <= 99999 ) || ( numero <= -10000 && numero >= -99999 ) )
+                {
+                    esValido = true;
+                }
+                else
+                {
+                    window.alert( "Error: El número debe ser estrictamente de cinco dígitos. Intente de nuevo." );
+                }
+            } 
+            if ( numero < 0 )
+            {
+                numero = -numero;
+            }
+
+            var digito1 = Math.floor( numero / 10000 );        
+            var digito2 = Math.floor( numero / 1000 ) % 10;     
+            var digito4 = Math.floor( numero / 10 ) % 10;       
+            var digito5 = numero % 10;                          
+
+            document.writeln( "<h1>Resultado del análisis</h1>" );
+            document.writeln( "<p>Número analizado: <strong>" + numero + "</strong></p>" );
+
+            if ( digito1 == digito5 && digito2 == digito4 )
+            {
+                document.writeln( "<p><strong>¡El número es un palíndromo!</strong></p>" );
+            }
+            else
+            {
+                document.writeln( "<p><strong>El número NO es un palíndromo.</strong></p>" );
+            }
+
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_19.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_21.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 19 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 19</title>
+
+        <script type="text/javascript">
+            document.writeln("<h1>Ejercicio 7.19</h1>");
+
+            document.writeln("<p><b>Pregunta:</b> (Problema del <i>else</i> suelto) Determine la salida de cada uno de los siguientes segmentos de código, cuando x es 9 y y es 11, y cuando x es 11 y y es 9.</p>");
+
+            // Código de la imagen que se debe analizar.
+            document.writeln("<pre>");
+            document.writeln("<b>a)</b>");
+            document.writeln("if ( x &lt; 10 )");
+            document.writeln("    if ( y &gt; 10 )");
+            document.writeln("        document.writeln ( \"&lt;p&gt;*****&lt;/p&gt;\" );");
+            document.writeln("    else");
+            document.writeln("        document.writeln( \"&lt;p&gt;#####&lt;/p&gt;\" );");
+            document.writeln("document.writeln( \"&lt;p&gt;$$$$$&lt;/p&gt;\" );");
+            document.writeln("");
+            document.writeln("<b>b)</b>");
+            document.writeln("if ( x &lt; 10 )");
+            document.writeln("{");
+            document.writeln("    if ( y &gt; 10 )");
+            document.writeln("        document.writeln( \"&lt;p&gt;*****&lt;/p&gt;\" );");
+            document.writeln("}");
+            document.writeln("else");
+            document.writeln("{");
+            document.writeln("    document.writeln( \"&lt;p&gt;#####&lt;/p&gt;\" );");
+            document.writeln("    document.writeln( \"&lt;p&gt;$$$$$&lt;/p&gt;\" );");
+            document.writeln("}");
+            document.writeln("</pre>");
+
+            // Respuestas del ejercicio
+            document.writeln("<h2>Respuesta</h2>");
+
+            document.writeln("<h3>Segmento a)</h3>");
+            document.writeln("<p><b>Cuando x = 9 y y = 11:</b></p>");
+            document.writeln("<p>&lt;p&gt;*****&lt;/p&gt;</p>");
+            document.writeln("<p>&lt;p&gt;$$$$$&lt;/p&gt;</p>");
+
+            document.writeln("<p><b>Cuando x = 11 y y = 9:</b></p>");
+            document.writeln("<p>&lt;p&gt;$$$$$&lt;/p&gt;</p>");
+
+            document.writeln("<h3>Segmento b)</h3>");
+            document.writeln("<p><b>Cuando x = 9 y y = 11:</b></p>");
+            document.writeln("<p>&lt;p&gt;*****&lt;/p&gt;</p>");
+
+            document.writeln("<p><b>Cuando x = 11 y y = 9:</b></p>");
+            document.writeln("<p>&lt;p&gt;#####&lt;/p&gt;</p>");
+            document.writeln("<p>&lt;p&gt;$$$$$&lt;/p&gt;</p>");
+        </script>
+        
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_18.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_20.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

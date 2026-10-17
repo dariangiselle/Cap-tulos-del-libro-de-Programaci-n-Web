@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 8 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 8</title>
+
+        <script type="text/javascript">
+            document.writeln("<h1>Ejercicio 7.8</h1>");
+
+            document.writeln("<p><b>Pregunta:</b> ¿Qué está mal en la siguiente instrucción de repetición while?</p>");
+
+            document.writeln("<p>while ( 7 >= 0 )</p>");
+            document.writeln("<p>&nbsp;&nbsp;&nbsp;&nbsp;suma += z;</p>");
+
+            document.writeln("<h2>Respuesta</h2>");
+
+            document.writeln("<p>El valor de la variable z nunca se cambia en el cuerpo de la instrucción while. Por lo tanto, si la condición de continuación de ciclo (z >= 0) es verdadera, se crea un ciclo infinito.</p>");
+
+            document.writeln("<p>Para evitar que ocurra un ciclo infinito, z debe decrementarse de manera que en un momento dado se vuelva menor que 0.</p>");
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_7.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_9.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

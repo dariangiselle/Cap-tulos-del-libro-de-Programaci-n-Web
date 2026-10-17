@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 23 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 23</title>
+        
+        <script>
+
+            var entrada;
+            var numeroCifrado;
+            var esValido = false;
+
+            while ( !esValido )
+            {
+                entrada = window.prompt( "Escriba el número entero cifrado de cuatro dígitos para descifrar:", "0" );
+                
+                numeroCifrado = parseInt( entrada );
+
+                if ( numeroCifrado >= 0 && numeroCifrado <= 9999 )
+                {
+                    esValido = true;
+                }
+                else
+                {
+                    window.alert( "Error: El número debe ser de cuatro dígitos (0 a 9999). Intente de nuevo." );
+                }
+            } 
+
+            var digito1 = Math.floor( numeroCifrado / 1000 );
+            var digito2 = Math.floor( numeroCifrado / 100 ) % 10;
+            var digito3 = Math.floor( numeroCifrado / 10 ) % 10;
+            var digito4 = numeroCifrado % 10;
+
+            var temporal1 = digito1;
+            var temporal2 = digito2;
+
+            digito1 = digito3;
+            digito2 = digito4;
+            digito3 = temporal1;
+            digito4 = temporal2;
+
+            digito1 = ( digito1 + 3 ) % 10;
+            digito2 = ( digito2 + 3 ) % 10;
+            digito3 = ( digito3 + 3 ) % 10;
+            digito4 = ( digito4 + 3 ) % 10;
+
+            var numeroOriginal = "" + digito1 + digito2 + digito3 + digito4;
+
+            document.writeln( "<h1>Resultado del Descifrado</h1>" );
+            document.writeln( "<p>Número cifrado ingresado: <strong>" + entrada + "</strong></p>" );
+            document.writeln( "<p>Número original descifrado: <strong>" + numeroOriginal + "</strong></p>" );
+
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_22.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_1.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

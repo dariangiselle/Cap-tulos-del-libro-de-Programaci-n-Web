@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- Preincremento y postincremento -->
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>Preincremento y postincremento</title>
+    <script>
+
+        var c;
+
+        c = 5;
+        document.writeln( "<h3>Postincremento</h3>" );
+        document.writeln( "<p>" + c ); // imprime 5
+        // imprime 5 y luego incrementa
+        document.writeln( " " + c++ );
+        document.writeln( " " + c + "</p>" ); //imprime 6 
+
+        c = 5;
+        document.writeln( "<h3>Preincremento</h3>" );
+        document.writeln( "<p>" + c ); //imprime 5
+        // incrementa y luego imprime 6
+        document.writeln( " " + ++c );
+        document.writeln( " " + c + "</p>" ); // imprime 6
+        
+    </script>
+
+    <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejemplo_3.html">← Anterior</a> | ' +
+                '<a href="../index_cap7.html">Menú del Capítulo 7</a> | ' +
+                '<a href="Ejemplo_1.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

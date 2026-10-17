@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 17 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 17</title>
+        
+        <script>
+
+            var contador = 1; // contador de números introducidos
+            var numero;   // número entero introducido por el usuario
+            var mayor1 = 0; // el número más grande hasta el momento
+            var mayor2 = 0; // el segundo número más grande hasta el momento
+
+            // Ciclo para solicitar 10 números
+            while ( contador <= 10 )
+            {
+                numero = window.prompt(
+                    "Escriba un número entero (" + contador + " de 10):", "0" );
+
+                numero = parseInt( numero );
+
+                // Evaluar si es el número más grande
+                if ( numero > mayor1 )
+                {
+                    mayor2 = mayor1; // el antiguo más grande pasa a ser el segundo más grande
+                    mayor1 = numero; // el nuevo número se convierte en el más grande
+                }
+                else if ( numero > mayor2 )
+                {
+                    mayor2 = numero; // el nuevo número es mayor únicamente que el segundo más grande
+                }
+
+                contador = contador + 1; // incrementar el contador
+            } // fin de while
+
+            // Fase de terminación: mostrar los resultados
+            document.writeln(
+                "<h1>Resultados</h1>" +
+                "<p>El número más grande es: <strong>" + mayor1 + "</strong></p>" +
+                "<p>El segundo número más grande es: <strong>" + mayor2 + "</strong></p>"
+            );
+
+        </script>
+        
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_16.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_18.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

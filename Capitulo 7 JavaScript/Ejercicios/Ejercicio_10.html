@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- Ejercicio 7. 10 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>7. 10</title>
+
+        <script type="text/javascript">
+            document.writeln("<h1>Ejercicio 7.10</h1>");
+
+            document.writeln("<p><b>Pregunta:</b> Sin ejecutarla, determine lo que imprime esta secuencia de comandos:</p>");
+
+            // Código de la imagen que se debe analizar.
+            // Se muestra como texto y no se ejecuta.
+            document.writeln("<pre>");
+            document.writeln("&lt;!DOCTYPE html&gt;");
+            document.writeln("&lt;!-- Ejercicio 7.10: ej07_10.html --&gt;");
+            document.writeln("&lt;html&gt;");
+            document.writeln("    &lt;head&gt;");
+            document.writeln("        &lt;meta charset = \"utf-8\"&gt;");
+            document.writeln("        &lt;title&gt;Secuencia de comandos misteriosa&lt;/title&gt;");
+            document.writeln("        &lt;script&gt;");
+            document.writeln("            var y;");
+            document.writeln("            var x = 1;");
+            document.writeln("            var total = 0;");
+            document.writeln("");
+            document.writeln("            while ( x &lt;= 10 )");
+            document.writeln("            {");
+            document.writeln("                y = x * x;");
+            document.writeln("                document.writeln( \"&lt;p&gt;\" + y + \"&lt;/p&gt;\" );");
+            document.writeln("                total += y;");
+            document.writeln("                ++x;");
+            document.writeln("            } // fin de while");
+            document.writeln("");
+            document.writeln("            document.writeln( \"&lt;p&gt;El total es \" + total + \"&lt;/p&gt;\" );");
+            document.writeln("        &lt;/script&gt;");
+            document.writeln("    &lt;/head&gt;");
+            document.writeln("    &lt;body&gt;&lt;/body&gt;");
+            document.writeln("&lt;/html&gt;");
+            document.writeln("</pre>");
+
+            // Respuesta del ejercicio
+            document.writeln("<h2>Respuesta</h2>");
+
+            document.writeln("<p>La secuencia imprime los cuadrados de los números del 1 al 10:</p>");
+
+            document.writeln("<p>1</p>");
+            document.writeln("<p>4</p>");
+            document.writeln("<p>9</p>");
+            document.writeln("<p>16</p>");
+            document.writeln("<p>25</p>");
+            document.writeln("<p>36</p>");
+            document.writeln("<p>49</p>");
+            document.writeln("<p>64</p>");
+            document.writeln("<p>81</p>");
+            document.writeln("<p>100</p>");
+
+            document.writeln("<p><b>El total es 385</b></p>");
+        </script>
+
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+        <hr>
+        <nav>
+        <a href="Ejercicio_9.html">← Anterior</a> | 
+        <a href="../index_cap7.html">Menú del Capítulo 7</a> | 
+        <a href="Ejercicio_11.html">Siguiente →</a>
+        </nav>
+        <hr>
+    </body>
+</html>

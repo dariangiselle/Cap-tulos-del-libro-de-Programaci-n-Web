@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- Ejercicio 6.6  -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Solución 6</title>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+        <script>
+            // Calcula el producto de tres enteros
+            var x, y, z, resultado;
+            var xVal, yVal, zVal;
+
+            xVal = window.prompt( "Escriba el primer entero:" );
+            yVal = window.prompt( "Escriba el segundo entero:" );
+            zVal = window.prompt( "Escriba el tercer entero:" );
+
+            x = parseInt( xVal );
+            y = parseInt( yVal );
+            z = parseInt( zVal );
+
+            resultado = x * y * z;
+            document.writeln( "<h1>El producto es " + resultado + "</h1>" );
+      </script>
+
+    </head>
+
+    <body>
+
+        <nav>
+        <a href="Ejercicio_5.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejercicio_7.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+    </body>
+</html>

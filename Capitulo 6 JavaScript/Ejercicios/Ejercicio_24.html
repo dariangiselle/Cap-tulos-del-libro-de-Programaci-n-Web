@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- Ejercicio 6.24 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>6.24 </title>
+
+        <style type="text/css">
+            table {
+                width: 50%;
+                border-collapse: collapse;
+                margin: 20px auto;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav>
+        <a href="Ejercicio_23.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejercicio_1.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <h2 style="text-align: center;">Tabla de Cuadrados y Cubos (0 al 5)</h2>
+
+        <script>
+            document.writeln("<table>");
+            document.writeln("  <thead>");
+            document.writeln("    <tr>");
+            document.writeln("      <th>número</th>");
+            document.writeln("      <th>cuadrado</th>");
+            document.writeln("      <th>cubo</th>");
+            document.writeln("    </tr>");
+            document.writeln("  </thead>");
+            document.writeln("  <tbody>");
+
+            for (var i = 0; i <= 5; i++) {
+                var cuadrado = i * i;
+                var cubo = i * i * i;
+
+                document.writeln("    <tr>");
+                document.writeln("      <td>" + i + "</td>");
+                document.writeln("      <td>" + cuadrado + "</td>");
+                document.writeln("      <td>" + cubo + "</td>");
+                document.writeln("    </tr>");
+            }
+
+            document.writeln("  </tbody>");
+            document.writeln("</table>");
+        </script>
+    </body>
+</html>

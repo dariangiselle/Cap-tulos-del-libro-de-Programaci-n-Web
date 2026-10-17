@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- Ejercicio 6.20 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>6.20 </title>
+
+        <script type="text/javascript">
+
+            var primerNumero;
+            var segundoNumero;
+            var tercerNumero;
+            var cuartoNumero;
+            var quintoNumero;
+            var numero1;
+            var numero2;
+            var numero3;
+            var numero4;
+            var numero5;
+            var menor;
+            var mayor;
+
+            // Lee los cinco números enteros
+            primerNumero = window.prompt("Escriba el primer entero");
+            segundoNumero = window.prompt("Escriba el segundo entero");
+            tercerNumero = window.prompt("Escriba el tercer entero");
+            cuartoNumero = window.prompt("Escriba el cuarto entero");
+            quintoNumero = window.prompt("Escriba el quinto entero");
+
+            // Convierte las cadenas a números enteros
+            numero1 = parseInt(primerNumero);
+            numero2 = parseInt(segundoNumero);
+            numero3 = parseInt(tercerNumero);
+            numero4 = parseInt(cuartoNumero);
+            numero5 = parseInt(quintoNumero);
+
+            // Inicializa el menor y el mayor
+            menor = numero1;
+            mayor = numero1;
+
+            // Compara el segundo número
+            if (numero2 < menor)
+                menor = numero2;
+
+            if (numero2 > mayor)
+                mayor = numero2;
+
+            // Compara el tercer número
+            if (numero3 < menor)
+                menor = numero3;
+
+            if (numero3 > mayor)
+                mayor = numero3;
+
+            // Compara el cuarto número
+            if (numero4 < menor)
+                menor = numero4;
+
+            if (numero4 > mayor)
+                mayor = numero4;
+
+            // Compara el quinto número
+            if (numero5 < menor)
+                menor = numero5;
+
+            if (numero5 > mayor)
+                mayor = numero5;
+
+            // Muestra los resultados
+            document.writeln("<h1>El entero menor es " + menor + "</h1>");
+            document.writeln("<h1>El entero mayor es " + mayor + "</h1>");
+
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav>
+        <a href="Ejercicio_19.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejercicio_21.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+    </body>
+</html>

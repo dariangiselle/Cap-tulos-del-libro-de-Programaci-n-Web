@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- Ejercicio 6.18 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>6.18 </title>
+
+        <script type="text/javascript">
+
+            var primerNumero;
+            var segundoNumero;
+            var tercerNumero;
+            var numero1;
+            var numero2;
+            var numero3;
+            var suma;
+            var promedio;
+            var producto;
+            var menor;
+            var mayor;
+
+            // Lee los tres números enteros
+            primerNumero = window.prompt("Escriba el primer entero");
+            segundoNumero = window.prompt("Escriba el segundo entero");
+            tercerNumero = window.prompt("Escriba el tercer entero");
+
+            // Convierte las cadenas a números enteros
+            numero1 = parseInt(primerNumero);
+            numero2 = parseInt(segundoNumero);
+            numero3 = parseInt(tercerNumero);
+
+            // Calcula la suma, el promedio y el producto
+            suma = numero1 + numero2 + numero3;
+            promedio = suma / 3;
+            producto = numero1 * numero2 * numero3;
+
+            // Inicializa el menor y el mayor
+            menor = numero1;
+            mayor = numero1;
+
+            // Determina el número menor
+            if (numero2 < menor)
+                menor = numero2;
+
+            if (numero3 < menor)
+                menor = numero3;
+
+            // Determina el número mayor
+            if (numero2 > mayor)
+                mayor = numero2;
+
+            if (numero3 > mayor)
+                mayor = numero3;
+
+            // Muestra los resultados en un cuadro de diálogo
+            window.alert(
+                "Suma: " + suma +
+                "\nPromedio: " + promedio +
+                "\nProducto: " + producto +
+                "\nMenor: " + menor +
+                "\nMayor: " + mayor
+            );
+
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+
+        <nav>
+        <a href="Ejercicio_17.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejercicio_19.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+    </body>
+</html>

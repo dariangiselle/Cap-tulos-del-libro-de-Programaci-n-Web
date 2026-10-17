@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Ejercicio 6.19 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>6.19 </title>
+
+        <script type="text/javascript">
+
+            var radio;
+            var pi = 3.14159;
+            var diametro;
+            var circunferencia;
+            var area;
+
+            // Lee el radio del usuario
+            radio = window.prompt("Escriba el radio del círculo");
+
+            // Convierte la cadena a un número
+            radio = parseFloat(radio);
+
+            // Calcula el diámetro, la circunferencia y el área
+            diametro = 2 * radio;
+            circunferencia = 2 * pi * radio;
+            area = pi * radio * radio;
+
+            // Muestra los resultados
+            document.writeln("<h1>Resultados del círculo</h1>");
+            document.writeln("<p>Radio: " + radio + "</p>");
+            document.writeln("<p>Diámetro: " + diametro + "</p>");
+            document.writeln("<p>Circunferencia: " +
+                circunferencia + "</p>");
+            document.writeln("<p>Área: " + area + "</p>");
+
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav>
+        <a href="Ejercicio_18.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejercicio_20.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+    </body>
+</html>

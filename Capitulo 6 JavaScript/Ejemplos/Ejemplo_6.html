@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!-- Uso de operadores de igualdad y relacionales. -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Uso de operadores relacionales</title>
+        <script>
+
+            var nombre; // cadena introducida por el usuario
+            var ahora = new Date(); // Fecha y hora actuales
+            var hora = ahora.getHours(); // hora actual (0-23)
+
+            // lee el nombre del cuadro indicador como una cadena
+            nombre = window.prompt( "Escriba su nombre" );
+
+            // determina si es de mañana
+            if ( hora < 12)
+                document.write( "<h1>Buenos d&iacute;as, ");
+            
+            // determina si la hora es PM
+            if ( hora >= 12 )
+            {
+                // convierte a reloj de 12 horas
+                hora = hora - 12;
+
+                // determina si es antes de las 6 PM
+                if ( hora < 6 )
+                    document.write( "<h1>Buenas tardes, " );
+
+                // determina si es después de las 6 PM
+                if ( hora >=6 )
+                        document.write( "<h1>Buenas noches, ");
+            } // end if
+
+            document.writeln(nombre +
+                ", Bienvenido a la programaci&oacute;n en JavaScript</h1>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+        
+    </head>
+    <body>
+
+        <nav>
+        <a href="Ejemplo_5.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejemplo_1.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+    </body>
+</html>

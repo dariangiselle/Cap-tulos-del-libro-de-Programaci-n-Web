@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- Ejercicio 6.17 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>6.17 </title>
+
+        <script type="text/javascript">
+            var numero1;
+            var numero2;
+
+            numero1 = window.prompt("Escriba el primer número entero");
+            numero2 = window.prompt("Escriba el segundo número entero");
+
+            numero1 = parseInt(numero1);
+            numero2 = parseInt(numero2);
+
+            if (numero1 > numero2)
+                window.alert(numero1 + " es mayor que " + numero2);
+
+            else
+                if (numero2 > numero1)
+                    window.alert(numero2 + " es mayor que " + numero1);
+
+                else
+                    document.writeln("<h1>Estos números son iguales</h1>");
+        </script>
+        
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav>
+        <a href="Ejercicio_16.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejercicio_18.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+    </body>
+</html>

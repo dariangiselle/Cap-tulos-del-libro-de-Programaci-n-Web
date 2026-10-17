@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- Ejercicio 6. 9 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>6. 9</title>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav>
+        <a href="Ejercicio_8.html">← Anterior</a> | 
+        <a href="../index_cap6.html">Menú del Capítulo 6</a> | 
+        <a href="Ejercicio_10.html">Siguiente →</a>
+        </nav>
+        <hr>
+
+        <h1>Ejercicio 6.9</h1>
+        <h2>Verdadero o falso</h2>
+
+        <script type="text/javascript">
+            document.writeln("<h3>Inciso a)</h3>");
+            document.writeln("<p>Enunciado: Los operadores de JavaScript se evalúan de izquierda a derecha.</p>");
+            document.writeln("<p><strong>Respuesta: Falso.</strong> El orden depende de la precedencia de los operadores. Cuando tienen la misma precedencia, generalmente se evalúan de izquierda a derecha.</p>");
+
+            document.writeln("<h3>Inciso b)</h3>");
+            document.writeln("<p>Enunciado: Los siguientes son nombres de variables válidos: _guión_bajo, n928134, t5, j7, sus_ventas$, el_total_de_su*$cuenta, a, b$, c, z, z2.</p>");
+            document.writeln("<p><strong>Respuesta: Falso.</strong> El nombre el_total_de_su*$cuenta es inválido porque contiene el carácter *.</p>");
+
+            document.writeln("<h3>Inciso c)</h3>");
+            document.writeln("<p>Enunciado: Una expresión aritmética válida de JavaScript sin paréntesis se evalúa de izquierda a derecha.</p>");
+            document.writeln("<p><strong>Respuesta: Falso.</strong> Primero se evalúan los operadores con mayor precedencia, como la multiplicación y la división, antes que la suma y la resta.</p>");
+
+            document.writeln("<h3>Inciso d)</h3>");
+            document.writeln("<p>Enunciado: Los siguientes son nombres de variables inválidos: 3g, 87, 67h2, h22, 2h.</p>");
+            document.writeln("<p><strong>Respuesta: Falso.</strong> h22 es un nombre válido porque comienza con una letra. Los demás son inválidos porque comienzan con números.</p>");
+        </script>
+    </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.21 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.21</title>
+        <script>
+            // Ejercicio 11.21: todas las cadenas de tres letras que se derivan de una palabra de cinco letras
+            function generar()
+            {
+                var palabra = document.getElementById( "palabra" ).value.replace( /^\s+|\s+$/g, "" );
+                var mensaje = document.getElementById( "mensaje" );
+                var resultado = document.getElementById( "resultado" );
+
+                if ( palabra.length != 5 || palabra.indexOf( " " ) != -1 )
+                {
+                    mensaje.innerHTML = "Introduzca una palabra de exactamente cinco letras.";
+                    resultado.value = "";
+                    return;
+                }
+
+                mensaje.innerHTML = "";
+                var cadenas = [];
+
+                // se eligen tres posiciones distintas de la palabra, en todos los órdenes posibles
+                for ( var i = 0; i < 5; ++i )
+                {
+                    for ( var j = 0; j < 5; ++j )
+                    {
+                        for ( var k = 0; k < 5; ++k )
+                        {
+                            if ( i != j && i != k && j != k )
+                            {
+                                var cadena = palabra.charAt( i ) + palabra.charAt( j ) + palabra.charAt( k );
+                                if ( cadenas.indexOf( cadena ) == -1 ) // si la palabra repite letras, no se repiten las cadenas
+                                {
+                                    cadenas.push( cadena );
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var texto = "Cadenas de tres letras que se derivan de \"" + palabra + "\": " + cadenas.length + "\n\n";
+                for ( i = 0; i < cadenas.length; ++i )
+                {
+                    texto += cadenas[ i ] + ( ( ( i + 1 ) % 6 == 0 ) ? "\n" : "   " );
+                }
+                resultado.value = texto;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); generar(); }, false );
+                document.getElementById( "botonGenerar" ).addEventListener( "click", generar, false );
+                generar();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+        
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea.salida { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Cadenas de tres letras a partir de una palabra de cinco letras</h2>
+        <p>
+            Escriba una palabra de cinco letras. Se producen todas las cadenas de tres letras que puedan derivarse
+            de sus letras. Por ejemplo, de la palabra "trigo" se obtienen "rio", "tio" y "oir", entre otras.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Palabra de cinco letras:</strong>
+                    <input id="palabra" type="text" size="8" maxlength="5" value="trigo">
+                </label>
+                <input id="botonGenerar" type="button" value="Generar cadenas">
+            </p>
+        </form>
+        <p id="mensaje" style="color: red; font-weight: bold;"></p>
+        <textarea id="resultado" class="salida" rows="14" cols="52" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_20.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_22.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

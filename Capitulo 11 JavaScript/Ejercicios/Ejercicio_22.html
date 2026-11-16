@@ -1,0 +1,154 @@
+```html
+<!DOCTYPE html>
+<!-- Ejercicio 11.22 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.22</title>
+        <script>
+            var dias = [ "domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado" ];
+            var meses = [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
+                          "septiembre", "octubre", "noviembre", "diciembre" ];
+
+            function dosDigitos( numero )
+            {
+                return ( numero < 10 ) ? "0" + numero : String( numero );
+            }
+
+            function mostrarFormatos()
+            {
+                var valor = document.getElementById( "fecha" ).value;
+                var resultado = document.getElementById( "resultado" );
+
+                if ( valor == "" )
+                {
+                    resultado.innerHTML = "Seleccione una fecha.";
+                    return;
+                }
+
+                var partes = valor.split( "-" );
+                var fecha = new Date( parseInt( partes[ 0 ] ), parseInt( partes[ 1 ] ) - 1, parseInt( partes[ 2 ] ) );
+
+                var d = dosDigitos( fecha.getDate() );
+                var m = dosDigitos( fecha.getMonth() + 1 );
+                var a = fecha.getFullYear();
+
+                var formatos = [
+                    [ "toString()", fecha.toString() ],
+                    [ "toDateString()", fecha.toDateString() ],
+                    [ "toLocaleDateString()", fecha.toLocaleDateString() ],
+                    [ "toLocaleDateString( \"es-MX\" )",
+                      fecha.toLocaleDateString( "es-MX", { weekday: "long", year: "numeric", month: "long", day: "numeric" } ) ],
+                    [ "toLocaleString()", fecha.toLocaleString() ],
+                    [ "toUTCString()", fecha.toUTCString() ],
+                    [ "DD/MM/AAAA", d + "/" + m + "/" + a ],
+                    [ "MM/DD/AAAA", m + "/" + d + "/" + a ],
+                    [ "AAAA-MM-DD (ISO 8601)", a + "-" + m + "-" + d ],
+                    [ "día de la semana, d de mes de año",
+                      dias[ fecha.getDay() ] + ", " + fecha.getDate() + " de " + meses[ fecha.getMonth() ] + " de " + a ],
+                    [ "d-mmm-aaaa", fecha.getDate() + "-" + meses[ fecha.getMonth() ].substring( 0, 3 ) + "-" + a ]
+                ];
+
+                var tabla = "<table class='datos'><tr><th>Método o formato</th><th>Resultado</th></tr>";
+
+                for ( var i = 0; i < formatos.length; ++i )
+                {
+                    tabla += "<tr><td>" + formatos[ i ][ 0 ] + "</td><td>" + formatos[ i ][ 1 ] + "</td></tr>";
+                }
+
+                resultado.innerHTML = tabla + "</table>";
+            }
+
+            function iniciar()
+            {
+                var hoy = new Date();
+
+                document.getElementById( "fecha" ).value = hoy.getFullYear() + "-" +
+                    dosDigitos( hoy.getMonth() + 1 ) + "-" + dosDigitos( hoy.getDate() );
+
+                document.getElementById( "botonMostrar" ).addEventListener( "click", mostrarFormatos, false );
+                document.getElementById( "fecha" ).addEventListener( "change", mostrarFormatos, false );
+
+                mostrarFormatos();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            table.datos {
+                border-collapse: collapse;
+            }
+            table.datos td, table.datos th {
+                border: 1px solid black;
+                padding: 4px 12px;
+                text-align: center;
+            }
+            table.datos th {
+                color: white;
+                background-color: darkblue;
+            }
+            table.datos td {
+                text-align: left;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Impresión de fechas en varios formatos</h2>
+
+        <p>
+            Seleccione una fecha. Se crea un objeto Date que la guarda y se usan varios métodos de Date que convierten
+            una fecha en una cadena, además de algunos formatos armados con <b>getDate</b>, <b>getMonth</b>,
+            <b>getFullYear</b> y <b>getDay</b>.
+        </p>
+
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Fecha:</strong>
+                    <input id="fecha" type="date">
+                </label>
+                <input id="botonMostrar" type="button" value="Mostrar formatos">
+            </p>
+        </form>
+
+        <div id="resultado"></div>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_21.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_23.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>
+```

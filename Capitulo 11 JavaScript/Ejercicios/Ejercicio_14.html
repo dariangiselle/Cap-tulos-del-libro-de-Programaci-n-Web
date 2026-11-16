@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.14 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.14</title>
+        <script>
+            // Ejercicio 11.14: total de ocurrencias de cada letra del alfabeto
+            var alfabeto = "abcdefghijklmnñopqrstuvwxyz";
+
+            // minúsculas y sin acentos, para que las mayúsculas y las minúsculas se cuenten como una sola letra
+            function normalizar( texto )
+            {
+                if ( texto.normalize )
+                {
+                    texto = texto.normalize( "NFC" );
+                }
+                texto = texto.toLowerCase();
+                var conAcento = "áéíóúü";
+                var sinAcento = "aeiouu";
+                var resultado = "";
+
+                for ( var i = 0; i < texto.length; ++i )
+                {
+                    var posicion = conAcento.indexOf( texto.charAt( i ) );
+                    resultado += ( posicion == -1 ) ? texto.charAt( i ) : sinAcento.charAt( posicion );
+                }
+                return resultado;
+            }
+
+            function contarLetras()
+            {
+                var texto = normalizar( document.getElementById( "texto" ).value );
+                var totales = new Array( alfabeto.length ); // un total por cada letra del alfabeto
+                var suma = 0;
+                var salida = "Letra    Total\n---------------\n";
+
+                for ( var i = 0; i < alfabeto.length; ++i )
+                {
+                    totales[ i ] = 0;
+                    var posicion = texto.indexOf( alfabeto.charAt( i ) );
+                    while ( posicion != -1 )
+                    {
+                        ++totales[ i ];
+                        posicion = texto.indexOf( alfabeto.charAt( i ), posicion + 1 );
+                    }
+                    suma += totales[ i ];
+                }
+
+                // formato tabular
+                for ( i = 0; i < alfabeto.length; ++i )
+                {
+                    var total = String( totales[ i ] );
+                    while ( total.length < 5 )
+                    {
+                        total = " " + total;
+                    }
+                    salida += alfabeto.charAt( i ).toUpperCase() + "        " + total + "\n";
+                }
+                salida += "---------------\nTotal de letras: " + suma + "\n";
+                document.getElementById( "resultado" ).value = salida;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonContar" ).addEventListener( "click", contarLetras, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+        
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea.salida { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Ocurrencias de cada letra del alfabeto</h2>
+        <p>
+            Escriba varias l&iacute;neas de texto. Se determina con <b>indexOf</b> el total de ocurrencias de cada letra del
+            alfabeto y los totales se guardan en un arreglo. Las may&uacute;sculas y las min&uacute;sculas se cuentan como una sola letra
+            (y las vocales con acento se cuentan como la vocal sin acento).
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Texto:</strong><br>
+                    <textarea id="texto" rows="6" cols="50">Ser o no ser: ese es el dilema:
+                    ¿Qu&eacute; es m&aacute;s noble para el esp&iacute;ritu?</textarea>
+                </label>
+                <br>
+                <input id="botonContar" type="button" value="Contar letras">
+            </p>
+        </form>
+        <textarea id="resultado" class="salida" rows="32" cols="22" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_13.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_15.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

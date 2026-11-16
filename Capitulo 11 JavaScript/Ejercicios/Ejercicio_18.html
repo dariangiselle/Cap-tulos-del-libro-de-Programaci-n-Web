@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.18 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.18</title>
+        <script>
+            // Ejercicio 11.18: caracteres para todos los códigos de tres dígitos, de 000 a 255
+            function tresDigitos( numero )
+            {
+                if ( numero < 10 )
+                {
+                    return "00" + numero;
+                }
+                if ( numero < 100 )
+                {
+                    return "0" + numero;
+                }
+                return String( numero );
+            }
+
+            // lo que se imprime para un código; los caracteres de control no se pueden imprimir
+            function caracterDe( codigo )
+            {
+                if ( codigo == 32 )
+                {
+                    return "(espacio)";
+                }
+                if ( codigo == 160 )
+                {
+                    return "(esp. duro)";
+                }
+                if ( codigo == 173 )
+                {
+                    return "(guion suave)";
+                }
+                if ( codigo < 32 || ( codigo >= 127 && codigo <= 159 ) )
+                {
+                    return "(control)";
+                }
+                return String.fromCharCode( codigo );
+            }
+
+            function rellenar( texto, ancho )
+            {
+                while ( texto.length < ancho )
+                {
+                    texto += " ";
+                }
+                return texto;
+            }
+
+            function generar()
+            {
+                var salida = "";
+                for ( var codigo = 0; codigo <= 255; ++codigo )
+                {
+                    salida += rellenar( tresDigitos( codigo ) + " = " + caracterDe( codigo ), 22 );
+                    if ( ( codigo + 1 ) % 4 == 0 )
+                    {
+                        salida += "\n"; // cuatro códigos por línea
+                    }
+                }
+                document.getElementById( "resultado" ).value = salida;
+            }
+
+            window.addEventListener( "load", generar, false );
+        </script>
+        
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea.salida { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Caracteres de los c&oacute;digos 000 a 255</h2>
+        <p>
+            Para cada c&oacute;digo de tres d&iacute;gitos se intenta imprimir el car&aacute;cter correspondiente con
+            <b>String.fromCharCode</b>. Los c&oacute;digos de control no se pueden imprimir y se indican entre par&eacute;ntesis.
+        </p>
+        <textarea id="resultado" class="salida" rows="22" cols="92" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_17.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_19.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

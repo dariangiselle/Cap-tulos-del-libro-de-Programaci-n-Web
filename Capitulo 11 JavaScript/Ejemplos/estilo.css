@@ -1,0 +1,10 @@
+/* estilo.css */
+/* Estilos básicos de texto */
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.6;
+}
+p { margin: 0.3em 0; }

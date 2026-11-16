@@ -1,0 +1,264 @@
+```html
+<!DOCTYPE html>
+<!-- Ejercicio 11.23 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.23</title>
+        <script>
+            var alfabeto = "abcdefghijklmnñopqrstuvwxyz";
+            var ejemplo = "Ser o no ser: ese es el dilema:\n¿Qué es más noble para el espíritu?";
+
+            function normalizar( texto )
+            {
+                if ( texto.normalize )
+                {
+                    texto = texto.normalize( "NFC" );
+                }
+
+                texto = texto.toLowerCase();
+                var conAcento = "áéíóúü";
+                var sinAcento = "aeiouu";
+                var resultado = "";
+
+                for ( var i = 0; i < texto.length; ++i )
+                {
+                    var posicion = conAcento.indexOf( texto.charAt( i ) );
+                    resultado += ( posicion == -1 ) ? texto.charAt( i ) : sinAcento.charAt( posicion );
+                }
+
+                return resultado;
+            }
+
+            function obtenerPalabras( texto )
+            {
+                if ( texto.normalize )
+                {
+                    texto = texto.normalize( "NFC" );
+                }
+
+                var palabras = texto.toLowerCase().match( /[a-záéíóúüñ0-9]+/g );
+                return ( palabras == null ) ? [] : palabras;
+            }
+
+            function analizarLetras()
+            {
+                var texto = normalizar( document.getElementById( "texto" ).value );
+                var totales = new Array( alfabeto.length );
+
+                for ( var i = 0; i < totales.length; ++i )
+                {
+                    totales[ i ] = 0;
+                }
+
+                for ( i = 0; i < texto.length; ++i )
+                {
+                    var posicion = alfabeto.indexOf( texto.charAt( i ) );
+
+                    if ( posicion != -1 )
+                    {
+                        ++totales[ posicion ];
+                    }
+                }
+
+                var tabla = "<table class='datos'>";
+
+                for ( var inicio = 0; inicio < alfabeto.length; inicio += 9 )
+                {
+                    var letras = "<tr>";
+                    var cuentas = "<tr>";
+
+                    for ( i = inicio; i < inicio + 9 && i < alfabeto.length; ++i )
+                    {
+                        letras += "<th>" + alfabeto.charAt( i ).toUpperCase() + "</th>";
+                        cuentas += "<td>" + totales[ i ] + "</td>";
+                    }
+
+                    tabla += letras + "</tr>" + cuentas + "</tr>";
+                }
+
+                document.getElementById( "resultadoA" ).innerHTML = tabla + "</table>";
+            }
+
+            function analizarLongitudes()
+            {
+                var palabras = obtenerPalabras( document.getElementById( "texto" ).value );
+                var maxima = 0;
+
+                for ( var i = 0; i < palabras.length; ++i )
+                {
+                    if ( palabras[ i ].length > maxima )
+                    {
+                        maxima = palabras[ i ].length;
+                    }
+                }
+
+                var cuentas = new Array( maxima + 1 );
+
+                for ( i = 0; i <= maxima; ++i )
+                {
+                    cuentas[ i ] = 0;
+                }
+
+                for ( i = 0; i < palabras.length; ++i )
+                {
+                    ++cuentas[ palabras[ i ].length ];
+                }
+
+                var tabla = "<table class='datos'><tr><th>Longitud de palabra</th><th>Ocurrencias</th></tr>";
+
+                for ( i = 1; i <= maxima; ++i )
+                {
+                    tabla += "<tr><td>" + i + "</td><td>" + cuentas[ i ] + "</td></tr>";
+                }
+
+                document.getElementById( "resultadoB" ).innerHTML = ( maxima > 0 ) ? tabla + "</table>" : "No hay palabras.";
+            }
+
+            function analizarPalabras()
+            {
+                var palabras = obtenerPalabras( document.getElementById( "texto" ).value );
+                var distintas = [];
+                var cuentas = [];
+
+                for ( var i = 0; i < palabras.length; ++i )
+                {
+                    var indice = distintas.indexOf( palabras[ i ] );
+
+                    if ( indice == -1 )
+                    {
+                        distintas.push( palabras[ i ] );
+                        cuentas.push( 1 );
+                    }
+                    else
+                    {
+                        ++cuentas[ indice ];
+                    }
+                }
+
+                var pares = [];
+
+                for ( i = 0; i < distintas.length; ++i )
+                {
+                    pares.push( [ distintas[ i ], cuentas[ i ] ] );
+                }
+
+                if ( document.getElementById( "alfabetico" ).checked )
+                {
+                    pares.sort( function( a, b ) { return a[ 0 ].localeCompare( b[ 0 ], "es" ); } );
+                }
+
+                var tabla = "<table class='datos'><tr><th>Palabra</th><th>Ocurrencias</th></tr>";
+
+                for ( i = 0; i < pares.length; ++i )
+                {
+                    tabla += "<tr><td>" + pares[ i ][ 0 ] + "</td><td>" + pares[ i ][ 1 ] + "</td></tr>";
+                }
+
+                document.getElementById( "resultadoC" ).innerHTML = ( pares.length > 0 ) ? tabla + "</table>" : "No hay palabras.";
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonA" ).addEventListener( "click", analizarLetras, false );
+                document.getElementById( "botonB" ).addEventListener( "click", analizarLongitudes, false );
+                document.getElementById( "botonC" ).addEventListener( "click", analizarPalabras, false );
+                document.getElementById( "alfabetico" ).addEventListener( "change", analizarPalabras, false );
+
+                document.getElementById( "texto" ).value = ejemplo;
+
+                analizarLetras();
+                analizarLongitudes();
+                analizarPalabras();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            table.datos {
+                border-collapse: collapse;
+                margin-bottom: 1em;
+            }
+            table.datos td, table.datos th {
+                border: 1px solid black;
+                padding: 4px 12px;
+                text-align: center;
+            }
+            table.datos th {
+                color: white;
+                background-color: darkblue;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Análisis de textos</h2>
+
+        <p>
+            Escriba varias líneas de texto y use cada botón para analizarlo con un método distinto. Las mayúsculas y las
+            minúsculas se cuentan como iguales.
+        </p>
+
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Texto:</strong><br>
+                    <textarea id="texto" rows="6" cols="60"></textarea>
+                </label>
+            </p>
+        </form>
+
+        <h3>a) Ocurrencias de cada letra del alfabeto</h3>
+        <p><input id="botonA" type="button" value="Contar letras"></p>
+        <div id="resultadoA"></div>
+
+        <h3>b) Palabras de una letra, de dos letras, de tres letras, etcétera</h3>
+        <p><input id="botonB" type="button" value="Contar longitudes de palabra"></p>
+        <div id="resultadoB"></div>
+
+        <h3>c) Ocurrencias de cada palabra distinta</h3>
+        <p>
+            <input id="botonC" type="button" value="Contar palabras">
+            <label><input id="alfabetico" type="checkbox"> Listar por orden alfabético</label>
+        </p>
+        <div id="resultadoC"></div>
+
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_22.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_24.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>
+```

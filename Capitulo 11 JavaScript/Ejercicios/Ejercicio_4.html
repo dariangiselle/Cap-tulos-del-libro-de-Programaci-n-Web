@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.4 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.4</title>
+        <script>
+            // Ejercicio 11.4: redondeo con el método floor de Math
+            function redondearAEntero( numero )
+            {
+                return Math.floor( numero + .5 );
+            }
+
+            function redondearADecimas( numero )
+            {
+                return Math.floor( numero * 10 + .5 ) / 10;
+            }
+
+            function redondearACentesimas( numero )
+            {
+                return Math.floor( numero * 100 + .5 ) / 100;
+            }
+
+            function redondearAMilesimas( numero )
+            {
+                return Math.floor( numero * 1000 + .5 ) / 1000;
+            }
+
+            var filas = []; // cada fila guarda el valor original y sus cuatro redondeos
+
+            function redondear()
+            {
+                var campo = document.getElementById( "valor" );
+                var mensaje = document.getElementById( "mensaje" );
+                var numero = parseFloat( campo.value );
+
+                if ( isNaN( numero ) )
+                {
+                    mensaje.innerHTML = "Introduzca un número válido.";
+                    return;
+                }
+
+                mensaje.innerHTML = "";
+                filas.push( [ campo.value, redondearAEntero( numero ), redondearADecimas( numero ),
+                            redondearACentesimas( numero ), redondearAMilesimas( numero ) ] );
+                campo.value = "";
+                campo.focus();
+                mostrarTabla();
+            }
+
+            function mostrarTabla()
+            {
+                var tabla = "<table class='datos'><tr><th>Valor original</th><th>Entero más cercano</th>" +
+                            "<th>Décima más cercana</th><th>Centésima más cercana</th><th>Milésima más cercana</th></tr>";
+                for ( var i = 0; i < filas.length; ++i )
+                {
+                    tabla += "<tr>";
+                    for ( var j = 0; j < filas[ i ].length; ++j )
+                    {
+                        tabla += "<td>" + filas[ i ][ j ] + "</td>";
+                    }
+                    tabla += "</tr>";
+                }
+                tabla += "</table>";
+                document.getElementById( "tabla" ).innerHTML = ( filas.length > 0 ) ? tabla : "";
+            }
+
+            function limpiar()
+            {
+                filas = [];
+                document.getElementById( "mensaje" ).innerHTML = "";
+                mostrarTabla();
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); redondear(); }, false );
+                document.getElementById( "botonRedondear" ).addEventListener( "click", redondear, false );
+                document.getElementById( "botonLimpiar" ).addEventListener( "click", limpiar, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+        
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            table.datos {
+                border-collapse: collapse;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            table.datos td, table.datos th {
+                border: 1px solid #ccc;
+                padding: 8px 14px;
+                text-align: center;
+            }
+            table.datos th {
+                color: white;
+                background-color: darkblue;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Redondeo de números con Math.floor</h2>
+        <p>
+            Se usa <b>Math.floor( x + .5 )</b> para el entero, <b>Math.floor( x * 10 + .5 ) / 10</b> para las décimas,
+            <b>Math.floor( x * 100 + .5 ) / 100</b> para las centésimas y <b>Math.floor( x * 1000 + .5 ) / 1000</b> para las
+            milésimas.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Número:</strong>
+                    <input id="valor" type="number" step="any">
+                </label>
+                <input id="botonRedondear" type="button" value="Redondear">
+                <input id="botonLimpiar" type="button" value="Limpiar tabla">
+            </p>
+        </form>
+        <p id="mensaje" style="color: red; font-weight: bold;"></p>
+        <div id="tabla"></div>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_3.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_5.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

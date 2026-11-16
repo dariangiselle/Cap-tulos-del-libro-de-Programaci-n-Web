@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.13 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.13</title>
+        <script>
+            // Ejercicio 11.13: número de ocurrencias de un carácter en varias líneas de texto
+            function contar()
+            {
+                var texto = document.getElementById( "texto" ).value;
+                var caracter = document.getElementById( "caracter" ).value;
+                var mensaje = document.getElementById( "mensaje" );
+
+                if ( caracter.length != 1 )
+                {
+                    mensaje.innerHTML = "Introduzca un solo carácter de búsqueda.";
+                    return;
+                }
+
+                if ( document.getElementById( "ignorar" ).checked )
+                {
+                    texto = texto.toLowerCase();
+                    caracter = caracter.toLowerCase();
+                }
+
+                // cada búsqueda con indexOf empieza después de la ocurrencia anterior
+                var cuenta = 0;
+                var posicion = texto.indexOf( caracter );
+                while ( posicion != -1 )
+                {
+                    ++cuenta;
+                    posicion = texto.indexOf( caracter, posicion + 1 );
+                }
+
+                mensaje.innerHTML = "El carácter <strong>" + caracter + "</strong> aparece <strong>" + cuenta +
+                    "</strong> " + ( ( cuenta == 1 ) ? "vez" : "veces" ) + " en el texto.";
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonContar" ).addEventListener( "click", contar, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Ocurrencias de un car&aacute;cter</h2>
+        <p>
+            Escriba varias l&iacute;neas de texto y el car&aacute;cter que desea buscar. El n&uacute;mero de ocurrencias se
+            determina con el m&eacute;todo <b>indexOf</b> de String.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Texto:</strong><br>
+                    <textarea id="texto" rows="6" cols="50"></textarea>
+                </label>
+            </p>
+            <p>
+                <label><strong>Car&aacute;cter de b&uacute;squeda:</strong>
+                    <input id="caracter" type="text" size="2" maxlength="1">
+                </label>
+                <label>
+                    <input id="ignorar" type="checkbox"> Ignorar may&uacute;sculas y min&uacute;sculas
+                </label>
+            </p>
+            <p>
+                <input id="botonContar" type="button" value="Contar ocurrencias">
+            </p>
+        </form>
+        <p id="mensaje"></p>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_12.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_14.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.20 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.20</title>
+        <script>
+            // Ejercicio 11.20: nuestra propia versión del método lastIndexOf de String
+            function miLastIndexOf( cadena, busqueda, desde )
+            {
+                var inicio = cadena.length - busqueda.length; // la última posición donde cabe la subcadena
+                if ( desde !== undefined && desde < inicio )
+                {
+                    inicio = ( desde < 0 ) ? 0 : desde;
+                }
+
+                for ( var i = inicio; i >= 0; --i ) // se busca de derecha a izquierda
+                {
+                    var j = 0;
+                    while ( j < busqueda.length && cadena.charAt( i + j ) == busqueda.charAt( j ) )
+                    {
+                        ++j;
+                    }
+
+                    if ( j == busqueda.length )
+                    {
+                        return i; // se encontró la última ocurrencia
+                    }
+                }
+                return -1;
+            }
+
+            function buscar()
+            {
+                var cadena = document.getElementById( "cadena" ).value;
+                var busqueda = document.getElementById( "busqueda" ).value;
+                var textoDesde = document.getElementById( "desde" ).value;
+                var desde = ( textoDesde == "" ) ? undefined : parseInt( textoDesde );
+
+                var mio = miLastIndexOf( cadena, busqueda, desde );
+                var nativo = cadena.lastIndexOf( busqueda, desde );
+
+                document.getElementById( "resultado" ).innerHTML =
+                    "<table class='datos'><tr><th>Método</th><th>Resultado</th></tr>" +
+                    "<tr><td>miLastIndexOf</td><td>" + mio + "</td></tr>" +
+                    "<tr><td>String.lastIndexOf</td><td>" + nativo + "</td></tr></table>" +
+                    "<p><strong>" + ( ( mio == nativo ) ? "Los dos resultados coinciden." : "Los resultados no coinciden." ) + "</strong></p>" +
+                    "<p>" + ( ( mio == -1 ) ? "La subcadena no se encontró." : "La última ocurrencia empieza en la posición " + mio + "." ) + "</p>";
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); buscar(); }, false );
+                document.getElementById( "botonBuscar" ).addEventListener( "click", buscar, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+        
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            table.datos {
+                border-collapse: collapse;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            table.datos td, table.datos th {
+                border: 1px solid #ccc;
+                padding: 8px 14px;
+                text-align: center;
+            }
+            table.datos th {
+                color: white;
+                background-color: darkblue;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Nuestra versi&oacute;n de lastIndexOf</h2>
+        <p>
+            La funci&oacute;n <b>miLastIndexOf</b> busca la última ocurrencia de una subcadena sin usar el m&eacute;todo
+            <b>lastIndexOf</b>; el resultado se compara con el del m&eacute;todo de String.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Cadena:</strong>
+                    <input id="cadena" type="text" size="40" value="Cada vez que ves una casa, piensas en casa">
+                </label>
+            </p>
+            <p>
+                <label><strong>Subcadena a buscar:</strong>
+                    <input id="busqueda" type="text" size="15" value="casa">
+                </label>
+                <label><strong>Posici&oacute;n inicial (opcional):</strong>
+                    <input id="desde" type="number" step="1" style="width: 5em">
+                </label>
+            </p>
+            <p>
+                <input id="botonBuscar" type="button" value="Buscar">
+            </p>
+        </form>
+        <div id="resultado"></div>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_19.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_21.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

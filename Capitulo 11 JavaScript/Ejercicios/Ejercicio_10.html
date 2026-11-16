@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.10 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.10</title>
+        <script>
+            // Ejercicio 11.10: número telefónico de la forma (555)555-5555
+            function extraer()
+            {
+                var telefono = document.getElementById( "telefono" ).value.replace( /^\s+|\s+$/g, "" );
+                var mensaje = document.getElementById( "mensaje" );
+
+                if ( !/^\(\d{3}\)\s?\d{3}-\d{4}$/.test( telefono ) )
+                {
+                    mensaje.innerHTML = "Introduzca el número con el formato (555)555-5555.";
+                    document.getElementById( "codigoArea" ).value = "";
+                    document.getElementById( "numeroSiete" ).value = "";
+                    return;
+                }
+
+                mensaje.innerHTML = "";
+
+                // los separadores son los paréntesis, el guión y los espacios; el primer token queda vacío
+                var tokens = telefono.split( /[()\s-]+/ );
+                var codigoArea = tokens[ 1 ];                     // los tres dígitos del código de área
+                var primerosTres = tokens[ 2 ];                   // los primeros tres dígitos del número
+                var ultimosCuatro = tokens[ 3 ];                  // los últimos cuatro dígitos del número
+
+                document.getElementById( "codigoArea" ).value = codigoArea;
+                document.getElementById( "numeroSiete" ).value = primerosTres + "-" + ultimosCuatro;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); extraer(); }, false );
+                document.getElementById( "botonExtraer" ).addEventListener( "click", extraer, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Extracci&oacute;n de un n&uacute;mero telef&oacute;nico</h2>
+        <p>
+            Introduzca un n&uacute;mero telef&oacute;nico con el formato <b>(555)555-5555</b>. Con el m&eacute;todo <b>split</b> de String
+            se extraen el c&oacute;digo de &aacute;rea, los primeros tres d&iacute;gitos y los &uacute;ltimos cuatro d&iacute;gitos.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>N&uacute;mero telef&oacute;nico:</strong>
+                    <input id="telefono" type="text" size="16" placeholder="(555)555-5555">
+                </label>
+                <input id="botonExtraer" type="button" value="Extraer">
+            </p>
+        </form>
+        <p id="mensaje" style="color: red; font-weight: bold;"></p>
+        <p>
+            <label><strong>C&oacute;digo de &aacute;rea:</strong>
+                <input id="codigoArea" type="text" size="5" readonly>
+            </label>
+        </p>
+        <p>
+            <label><strong>N&uacute;mero de siete d&iacute;gitos:</strong>
+                <input id="numeroSiete" type="text" size="10" readonly>
+            </label>
+        </p>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_9.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_11.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

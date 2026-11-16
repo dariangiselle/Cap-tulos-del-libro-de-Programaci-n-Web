@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.3 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.3</title>
+        <script>
+            // Ejercicio 11.3: se evalúan los métodos y las constantes del objeto Math (figura 11.1)
+            // el valor se redondea a 6 decimales para que no aparezcan errores de punto flotante como 6.1e-17
+            function formato( valor )
+            {
+                return String( Number( valor.toFixed( 6 ) ) );
+            }
+
+            // rellena con espacios a la derecha para alinear las columnas
+            function rellenar( texto, ancho )
+            {
+                texto = String( texto );
+                while ( texto.length < ancho )
+                {
+                    texto += " ";
+                }
+                return texto;
+            }
+
+            // tabla para un método con un argumento
+            function tablaUnArgumento( nombre, metodo, argumentos )
+            {
+                var texto = "Math." + nombre + "( x )\n" + rellenar( "x", 14 ) + "resultado\n";
+                for ( var i = 0; i < argumentos.length; ++i )
+                {
+                    texto += rellenar( formato( argumentos[ i ] ), 14 ) + formato( metodo( argumentos[ i ] ) ) + "\n";
+                }
+                return texto + "\n";
+            }
+
+            // tabla para un método con dos argumentos
+            function tablaDosArgumentos( nombre, metodo, pares )
+            {
+                var texto = "Math." + nombre + "( x, y )\n" + rellenar( "x", 8 ) + rellenar( "y", 8 ) + "resultado\n";
+                for ( var i = 0; i < pares.length; ++i )
+                {
+                    texto += rellenar( pares[ i ][ 0 ], 8 ) + rellenar( pares[ i ][ 1 ], 8 ) +
+                         formato( metodo( pares[ i ][ 0 ], pares[ i ][ 1 ] ) ) + "\n";
+                }
+                return texto + "\n";
+            }
+
+            function generarTablas()
+            {
+                var angulos = [ 0, Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI / 2, Math.PI ]; // en radianes
+                var texto = "";
+
+                texto += tablaUnArgumento( "abs", Math.abs, [ -7.2, -1, 0, 5.6, 100 ] );
+                texto += tablaUnArgumento( "ceil", Math.ceil, [ 9.2, -9.8, 4, 0.1, -0.5 ] );
+                texto += tablaUnArgumento( "cos", Math.cos, angulos );
+                texto += tablaUnArgumento( "exp", Math.exp, [ 0, 1, 2, 2.5, -1 ] );
+                texto += tablaUnArgumento( "floor", Math.floor, [ 9.2, -9.8, 4, 0.9, -0.5 ] );
+                texto += tablaUnArgumento( "log", Math.log, [ 1, Math.E, 10, 100, 0.5 ] );
+                texto += tablaDosArgumentos( "max", Math.max, [ [ 2.3, 12.7 ], [ -2.3, -12.7 ], [ 5, 5 ], [ 0, -1 ] ] );
+                texto += tablaDosArgumentos( "min", Math.min, [ [ 2.3, 12.7 ], [ -2.3, -12.7 ], [ 5, 5 ], [ 0, -1 ] ] );
+                texto += tablaDosArgumentos( "pow", Math.pow, [ [ 2, 7 ], [ 9, 0.5 ], [ 5, 2 ], [ 10, -2 ], [ 2, 0 ] ] );
+                texto += tablaUnArgumento( "round", Math.round, [ 9.75, 9.25, 9.5, -9.5, -9.75 ] );
+                texto += tablaUnArgumento( "sin", Math.sin, angulos );
+                texto += tablaUnArgumento( "sqrt", Math.sqrt, [ 0, 1, 2, 900, 30.25 ] );
+                texto += tablaUnArgumento( "tan", Math.tan, [ 0, Math.PI / 6, Math.PI / 4, Math.PI / 3, Math.PI ] );
+
+                texto += "Constantes de Math\n";
+                texto += rellenar( "Math.E", 14 ) + Math.E + "\n";
+                texto += rellenar( "Math.LN2", 14 ) + Math.LN2 + "\n";
+                texto += rellenar( "Math.LN10", 14 ) + Math.LN10 + "\n";
+                texto += rellenar( "Math.LOG2E", 14 ) + Math.LOG2E + "\n";
+                texto += rellenar( "Math.LOG10E", 14 ) + Math.LOG10E + "\n";
+                texto += rellenar( "Math.PI", 14 ) + Math.PI + "\n";
+                texto += rellenar( "Math.SQRT1_2", 14 ) + Math.SQRT1_2 + "\n";
+                texto += rellenar( "Math.SQRT2", 14 ) + Math.SQRT2 + "\n";
+
+                document.getElementById( "salida" ).value = texto;
+            }
+
+            window.addEventListener( "load", generarTablas, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+                font-size: 18px;
+            }
+            textarea.salida { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Escriba una secuencia de comandos que evalúe todas las funciones que pueda de la biblioteca Math. Para ejercitar cada una de estas funciones, haga que su programa muestre tablas de valores de retorno para varios valores de argumentos en un elemento textarea de HTML5</h2>
+        <textarea id="salida" class="salida" rows="30" cols="60" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_2.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_4.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

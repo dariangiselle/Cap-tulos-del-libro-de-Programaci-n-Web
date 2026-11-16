@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.2 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.2</title>
+        <script>
+            // Ejercicio 11.2: cuatro botones que muestran fechas y horas distintas en un diálogo de alerta
+            function mostrarFecha( titulo, fecha )
+            {
+                alert( titulo + "\n" + fecha.toLocaleString( "es-MX", { dateStyle: "full", timeStyle: "medium" } ) );
+            }
+
+            // fecha y hora actuales
+            function ahora()
+            {
+                mostrarFecha( "Fecha y hora actuales:", new Date() );
+            }
+
+            // fecha y hora de hace 24 horas
+            function ayer()
+            {
+                var fecha = new Date( new Date().getTime() - 24 * 60 * 60 * 1000 );
+                mostrarFecha( "Fecha y hora de hace 24 horas:", fecha );
+            }
+
+            // fecha y hora de hace diez años
+            function haceDiezAnios()
+            {
+                var fecha = new Date();
+                fecha.setFullYear( fecha.getFullYear() - 10 );
+                mostrarFecha( "Fecha y hora de hace diez años:", fecha );
+            }
+
+            // fecha y hora de una semana a partir de hoy
+            function enUnaSemana()
+            {
+                var fecha = new Date();
+                fecha.setDate( fecha.getDate() + 7 );
+                mostrarFecha( "Fecha y hora de una semana a partir de hoy:", fecha );
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonAhora" ).addEventListener( "click", ahora, false );
+                document.getElementById( "botonAyer" ).addEventListener( "click", ayer, false );
+                document.getElementById( "botonDiez" ).addEventListener( "click", haceDiezAnios, false );
+                document.getElementById( "botonSemana" ).addEventListener( "click", enUnaSemana, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Fechas y horas con el objeto Date</h2>
+        <p>
+            Haga clic en cada botón para ver en un diálogo de alerta una fecha y hora diferentes
+            con relación a la hora actual.
+        </p>
+        <p>
+            <input id="botonAhora" type="button" value="Ahora">
+            <input id="botonAyer" type="button" value="Ayer">
+            <input id="botonDiez" type="button" value="Hace diez años">
+            <input id="botonSemana" type="button" value="Una semana a partir de hoy">
+        </p>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_1.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_3.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.17 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.17</title>
+        <script>
+            // Ejercicio 11.17: carácter correspondiente a un código entero
+            function mostrar()
+            {
+                var campo = document.getElementById( "codigo" );
+                var resultado = document.getElementById( "resultado" );
+                var codigo = Number( campo.value );
+
+                if ( campo.value == "" || codigo != Math.floor( codigo ) || codigo < 0 || codigo > 65535 )
+                {
+                    resultado.innerHTML = "Introduzca un código entero entre 0 y 65535.";
+                    return;
+                }
+
+                // los códigos de control (0 a 31 y 127 a 159) no tienen un carácter que se pueda imprimir
+                if ( codigo < 32 || ( codigo >= 127 && codigo <= 159 ) )
+                {
+                    resultado.innerHTML = "El código " + codigo + " es un carácter de control: no se puede imprimir.";
+                }
+                else
+                {
+                    resultado.innerHTML = "El código <strong>" + codigo + "</strong> corresponde al carácter <strong style = 'font-size: 2em'>" +
+                        String.fromCharCode( codigo ).replace( /&/g, "&amp;" ).replace( /</g, "&lt;" ) + "</strong>";
+                }
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); mostrar(); }, false );
+                document.getElementById( "botonMostrar" ).addEventListener( "click", mostrar, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Car&aacute;cter de un c&oacute;digo entero</h2>
+        <p>
+            Introduzca un c&oacute;digo entero y se mostrar&aacute; el car&aacute;cter correspondiente con el m&eacute;todo
+            <b>String.fromCharCode</b>. Por ejemplo, 65 es la letra A y 97 es la letra a.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>C&oacute;digo:</strong>
+                    <input id="codigo" type="number" min="0" max="65535" step="1">
+                </label>
+                <input id="botonMostrar" type="button" value="Mostrar car&aacute;cter">
+            </p>
+        </form>
+        <p id="resultado" style="font-weight: bold;"></p>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_16.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_18.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

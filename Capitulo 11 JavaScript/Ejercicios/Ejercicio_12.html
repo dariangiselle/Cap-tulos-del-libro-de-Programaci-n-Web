@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.12 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.12</title>
+        <script>
+            // Ejercicio 11.12: texto en mayúsculas y en minúsculas
+            function convertir()
+            {
+                var texto = document.getElementById( "texto" ).value;
+                document.getElementById( "mayusculas" ).value = texto.toUpperCase();
+                document.getElementById( "minusculas" ).value = texto.toLowerCase();
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonConvertir" ).addEventListener( "click", convertir, false );
+                document.getElementById( "texto" ).addEventListener( "input", convertir, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Texto en may&uacute;sculas y en min&uacute;sculas</h2>
+        <p>
+            Escriba un texto. Se imprime en may&uacute;sculas con el m&eacute;todo <b>toUpperCase</b> y en min&uacute;sculas con el
+            m&eacute;todo <b>toLowerCase</b> de String.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Texto:</strong><br>
+                    <textarea id="texto" rows="5" cols="50"></textarea>
+                </label>
+                <br>
+                <input id="botonConvertir" type="button" value="Convertir">
+            </p>
+            <p>
+                <label><strong>En may&uacute;sculas:</strong><br>
+                    <textarea id="mayusculas" rows="5" cols="50" readonly></textarea>
+                </label>
+            </p>
+            <p>
+                <label><strong>En min&uacute;sculas:</strong><br>
+                    <textarea id="minusculas" rows="5" cols="50" readonly></textarea>
+                </label>
+            </p>
+        </form>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_11.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_13.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

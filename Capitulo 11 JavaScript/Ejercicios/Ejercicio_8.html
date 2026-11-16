@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.8 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.8</title>
+        <script>
+            // Ejercicio 11.8: quintillas al azar
+            // Una quintilla tiene cinco líneas: la 1, la 2 y la 5 riman entre sí, y la 3 rima con la 4.
+            // Cada familia de rimas tiene preludios (el comienzo de la línea) y finales (la palabra que rima).
+            var familias = [
+                { preludios: [ "Un gato con ganas de", "Mi abuela salió a", "La luna se puso a", "Sin pensarlo, quiso", "Todos los niños fueron a" ],
+                  finales: [ "cantar", "bailar", "pasear", "soñar", "volar", "jugar" ] },
+                { preludios: [ "Encontró en el jardín un", "Vio pasar por el camino un", "Se tropezó de pronto con un", "Llevaba en su bolsillo un", "Compró en la tienda un" ],
+                  finales: [ "melón", "ratón", "balcón", "montón", "camión", "botón" ] },
+                { preludios: [ "Todos cantaban con tanta", "El loro hablaba con mucha", "Mi tío bailaba con tanta", "La abuela sonreía con tanta", "El poeta recitó con tanta" ],
+                  finales: [ "alegría", "poesía", "melodía", "fantasía", "valentía", "simpatía" ] },
+                { preludios: [ "Dicen que fue un buen", "Soñaba con ser un", "Nació siendo un gran", "Llegó a ser un famoso", "Mi primo, de grande, fue un" ],
+                  finales: [ "viajero", "panadero", "jardinero", "cartero", "carpintero", "marinero" ] },
+                { preludios: [ "Volvió a su casa muy", "Se quedó en silencio, muy", "Salió del cuarto algo", "Llegó a la fiesta muy", "Miró el reloj, algo" ],
+                  finales: [ "cansado", "enojado", "asustado", "callado", "apurado", "emocionado" ] }
+            ];
+
+            // devuelve "cantidad" elementos distintos de un arreglo, elegidos al azar
+            function elegirDistintos( arreglo, cantidad )
+            {
+                var copia = arreglo.slice( 0 );
+                var elegidos = [];
+                for ( var i = 0; i < cantidad; ++i )
+                {
+                    var indice = Math.floor( Math.random() * copia.length );
+                    elegidos.push( copia[ indice ] );
+                    copia.splice( indice, 1 );
+                }
+                return elegidos;
+            }
+
+            // arma una línea con un preludio y un final de una familia
+            function crearLinea( preludio, final )
+            {
+                return preludio + " " + final;
+            }
+
+            function crearQuintilla()
+            {
+                var dos = elegirDistintos( familias, 2 );
+                var a = dos[ 0 ]; // rima de las líneas 1, 2 y 5
+                var b = dos[ 1 ]; // rima de las líneas 3 y 4
+
+                var preludiosA = elegirDistintos( a.preludios, 3 );
+                var finalesA = elegirDistintos( a.finales, 3 );
+                var preludiosB = elegirDistintos( b.preludios, 2 );
+                var finalesB = elegirDistintos( b.finales, 2 );
+
+                var lineas = [
+                    crearLinea( preludiosA[ 0 ], finalesA[ 0 ] ),
+                    crearLinea( preludiosA[ 1 ], finalesA[ 1 ] ),
+                    crearLinea( preludiosB[ 0 ], finalesB[ 0 ] ),
+                    crearLinea( preludiosB[ 1 ], finalesB[ 1 ] ),
+                    crearLinea( preludiosA[ 2 ], finalesA[ 2 ] )
+                ];
+
+                var quintilla = "";
+                for ( var i = 0; i < lineas.length; ++i )
+                {
+                    quintilla += lineas[ i ] + ( ( i < lineas.length - 1 ) ? "," : "." ) + "\n";
+                }
+                return quintilla;
+            }
+
+            function crearQuintillas()
+            {
+                var texto = "";
+                for ( var i = 1; i <= 3; ++i )
+                {
+                    texto += "Quintilla " + i + "\n" + crearQuintilla() + "\n";
+                }
+                document.getElementById( "quintillas" ).value = texto;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonQuintillas" ).addEventListener( "click", crearQuintillas, false );
+                crearQuintillas();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Quintillas al azar</h2>
+        <p>
+            Una quintilla es un verso humorístico de cinco líneas en el cual la primera y la segunda línea riman con la quinta,
+            y la tercera línea rima con la cuarta. El programa elige dos familias de rimas, y para cada línea combina un
+            comienzo con una palabra final de su familia.
+        </p>
+        <p><input id="botonQuintillas" type="button" value="Generar otras quintillas"></p>
+        <textarea id="quintillas" rows="22" cols="50" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_7.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_9.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

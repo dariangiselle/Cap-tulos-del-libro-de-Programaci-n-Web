@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.11 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.11</title>
+        <script>
+            // Ejercicio 11.11: tokens de una línea de texto en orden inverso
+            function invertir()
+            {
+                var linea = document.getElementById( "linea" ).value;
+                var mensaje = document.getElementById( "mensaje" );
+                var palabras = linea.split( " " ); // se divide la línea en tokens
+                var tokens = [];
+
+                for ( var i = 0; i < palabras.length; ++i )
+                {
+                    if ( palabras[ i ] != "" )
+                    {
+                        tokens.push( palabras[ i ] );
+                    }
+                }
+
+                if ( tokens.length == 0 )
+                {
+                    mensaje.innerHTML = "Introduzca una línea de texto.";
+                    document.getElementById( "resultado" ).value = "";
+                    return;
+                }
+
+                mensaje.innerHTML = "";
+                var salida = "La línea tiene " + tokens.length + " tokens.\n\nTokens en orden inverso:\n";
+                for ( i = tokens.length - 1; i >= 0; --i )
+                {
+                    salida += tokens[ i ] + "\n";
+                }
+                document.getElementById( "resultado" ).value = salida;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); invertir(); }, false );
+                document.getElementById( "botonInvertir" ).addEventListener( "click", invertir, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Tokens en orden inverso</h2>
+        <p>
+            Introduzca una línea de texto. Se divide en tokens con el método <b>split</b> de String
+            y se muestran en orden inverso.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Línea de texto:</strong>
+                    <input id="linea" type="text" size="50">
+                </label>
+                <input id="botonInvertir" type="button" value="Invertir tokens">
+            </p>
+        </form>
+        <p id="mensaje" style="color: red; font-weight: bold;"></p>
+        <textarea id="resultado" rows="10" cols="40" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_10.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_12.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.6 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.6</title>
+        <script>
+            // Ejercicio 11.6: comparación de dos objetos String con operadores relacionales y de igualdad
+            function comparar()
+            {
+                var cadena1 = document.getElementById( "cadena1" ).value;
+                var cadena2 = document.getElementById( "cadena2" ).value;
+                var resultado;
+
+                if ( cadena1 < cadena2 )
+                {
+                    resultado = "La primera cadena es <b>menor</b> que la segunda.";
+                }
+                else if ( cadena1 == cadena2 )
+                {
+                    resultado = "La primera cadena es <b>igual</b> a la segunda.";
+                }
+                else
+                {
+                    resultado = "La primera cadena es <b>mayor</b> que la segunda.";
+                }
+
+                var tabla = "<table class='datos'><tr><th>Expresión</th><th>Resultado</th></tr>" +
+                    "<tr><td>cadena1 == cadena2</td><td>" + ( cadena1 == cadena2 ) + "</td></tr>" +
+                    "<tr><td>cadena1 != cadena2</td><td>" + ( cadena1 != cadena2 ) + "</td></tr>" +
+                    "<tr><td>cadena1 &lt; cadena2</td><td>" + ( cadena1 < cadena2 ) + "</td></tr>" +
+                    "<tr><td>cadena1 &lt;= cadena2</td><td>" + ( cadena1 <= cadena2 ) + "</td></tr>" +
+                    "<tr><td>cadena1 &gt; cadena2</td><td>" + ( cadena1 > cadena2 ) + "</td></tr>" +
+                    "<tr><td>cadena1 &gt;= cadena2</td><td>" + ( cadena1 >= cadena2 ) + "</td></tr></table>";
+
+                document.getElementById( "resultado" ).innerHTML = "<p><strong>" + resultado + "</strong></p>" + tabla;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); comparar(); }, false );
+                document.getElementById( "botonComparar" ).addEventListener( "click", comparar, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            table.datos {
+                border-collapse: collapse;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            table.datos td, table.datos th {
+                border: 1px solid #ccc;
+                padding: 8px 14px;
+                text-align: center;
+            }
+            table.datos th {
+                color: white;
+                background-color: darkblue;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Comparación de cadenas</h2>
+        <p>
+            Introduzca dos cadenas para compararlas. JavaScript compara las cadenas carácter por carácter
+            con base en sus códigos Unicode, por lo que una letra mayúscula es menor que la misma letra en minúscula.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Primera cadena:</strong>
+                    <input id="cadena1" type="text" size="25">
+                </label>
+            </p>
+            <p>
+                <label><strong>Segunda cadena:</strong>
+                    <input id="cadena2" type="text" size="25">
+                </label>
+            </p>
+            <p>
+                <input id="botonComparar" type="button" value="Comparar">
+            </p>
+        </form>
+        <div id="resultado"></div>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_5.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_7.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

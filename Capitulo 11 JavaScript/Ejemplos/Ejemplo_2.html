@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Ejemplo 2 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Buscar en cadenas</title>
+        <link rel = "stylesheet" type = "text/css" href = "estilo.css">
+        <script src = "js/BuscarCadenas.js"></script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <form id = "formBusqueda" action = "#">
+        <h1>La cadena en donde se va a realizar la b&uacute;squeda es:
+            abcdefghijklmnopqrstuvwxyzabcdefghijklm</h1>
+        <p>Introduzca la subcadena que desea buscar
+        <input id = "campoEntrada" type = "search">
+        <input id = "botonBuscar" type = "button" value = "Buscar"></p>
+        <div id = "resultados"></div>
+        </form>
+        <hr>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejemplo_1.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejemplo_3.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+
+    </body>
+</html>

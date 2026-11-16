@@ -1,0 +1,188 @@
+```html
+<!DOCTYPE html>
+<!-- Ejercicio 11.25 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.25</title>
+        <script>
+            var unidades = [ "", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve",
+                             "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete",
+                             "dieciocho", "diecinueve", "veinte", "veintiuno", "veintidós", "veintitrés",
+                             "veinticuatro", "veinticinco", "veintiséis", "veintisiete", "veintiocho", "veintinueve" ];
+
+            var decenas = [ "", "", "", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa" ];
+
+            var centenas = [ "", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos",
+                             "seiscientos", "setecientos", "ochocientos", "novecientos" ];
+
+            function menorDeMil( numero, apocopar )
+            {
+                if ( numero == 100 )
+                {
+                    return "cien";
+                }
+
+                var texto = centenas[ Math.floor( numero / 100 ) ];
+                var resto = numero % 100;
+
+                if ( resto > 0 )
+                {
+                    if ( texto != "" )
+                    {
+                        texto += " ";
+                    }
+
+                    if ( resto < 30 )
+                    {
+                        texto += unidades[ resto ];
+                    }
+                    else
+                    {
+                        texto += decenas[ Math.floor( resto / 10 ) ];
+
+                        if ( resto % 10 > 0 )
+                        {
+                            texto += " y " + unidades[ resto % 10 ];
+                        }
+                    }
+                }
+
+                if ( apocopar )
+                {
+                    if ( texto.substring( texto.length - 9 ) == "veintiuno" )
+                    {
+                        texto = texto.substring( 0, texto.length - 9 ) + "veintiún";
+                    }
+                    else if ( texto.substring( texto.length - 3 ) == "uno" )
+                    {
+                        texto = texto.substring( 0, texto.length - 1 );
+                    }
+                }
+
+                return texto;
+            }
+
+            function enLetras( entero )
+            {
+                if ( entero == 0 )
+                {
+                    return "cero";
+                }
+
+                var millones = Math.floor( entero / 1000000 );
+                var miles = Math.floor( ( entero % 1000000 ) / 1000 );
+                var resto = entero % 1000;
+                var partes = [];
+
+                if ( millones > 0 )
+                {
+                    partes.push( ( millones == 1 ) ? "un millón" : menorDeMil( millones, true ) + " millones" );
+                }
+
+                if ( miles > 0 )
+                {
+                    partes.push( ( miles == 1 ) ? "mil" : menorDeMil( miles, true ) + " mil" );
+                }
+
+                if ( resto > 0 )
+                {
+                    partes.push( menorDeMil( resto, false ) );
+                }
+
+                return partes.join( " " );
+            }
+
+            function escribirMonto()
+            {
+                var campo = document.getElementById( "monto" );
+                var resultado = document.getElementById( "resultado" );
+                var monto = parseFloat( campo.value );
+
+                if ( isNaN( monto ) || monto < 0 || monto >= 1000000000 )
+                {
+                    resultado.innerHTML = "Introduzca un monto entre 0 y 999,999,999.99.";
+                    return;
+                }
+
+                var centavosTotales = Math.round( monto * 100 );
+                var entero = Math.floor( centavosTotales / 100 );
+                var centavos = centavosTotales % 100;
+                var textoCentavos = ( centavos < 10 ) ? "0" + centavos : String( centavos );
+
+                resultado.innerHTML = "<p>Monto: <strong>" + entero + "." + textoCentavos + "</strong></p>" +
+                    "<p><strong>" + ( enLetras( entero ) + " con " + textoCentavos + "/100" ).toUpperCase() + "</strong></p>";
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); escribirMonto(); }, false );
+
+                document.getElementById( "botonEscribir" ).addEventListener( "click", escribirMonto, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Equivalente en palabras del monto de un cheque</h2>
+
+        <p>
+            Introduzca el monto numérico de un cheque (menor que mil millones) y se escribe su equivalente en palabras.
+            Por ejemplo, el monto 112.43 se escribe como <b>CIENTO DOCE CON 43/100</b>.
+        </p>
+
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Monto ($):</strong>
+                    <input id="monto" type="number" min="0" step="0.01">
+                </label>
+                <input id="botonEscribir" type="button" value="Escribir en palabras">
+            </p>
+        </form>
+
+        <div id="resultado"></div>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_24.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_26.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>
+```

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.15 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.15</title>
+        <script>
+            // Ejercicio 11.15: cadenas que comienzan con "b"
+            // devuelve true si la cadena cumple la condición del ejercicio
+            function cumple( cadena )
+            {
+                return cadena.charAt( 0 ) == "b";
+            }
+
+            function filtrar()
+            {
+                var lineas = document.getElementById( "cadenas" ).value.split( "\n" );
+                var salida = "";
+                var leidas = 0;
+                var impresas = 0;
+
+                for ( var i = 0; i < lineas.length; ++i )
+                {
+                    var cadena = lineas[ i ].replace( /^\s+|\s+$/g, "" ); // se quitan los espacios de los extremos
+                    if ( cadena != "" )
+                    {
+                        ++leidas;
+                        if ( cumple( cadena ) )
+                        {
+                            salida += cadena + "\n";
+                            ++impresas;
+                        }
+                    }
+                }
+
+                document.getElementById( "resumen" ).innerHTML = "Se leyeron " + leidas + " cadenas y se imprimieron " + impresas + ".";
+                document.getElementById( "resultado" ).value = salida;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonFiltrar" ).addEventListener( "click", filtrar, false );
+                filtrar();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Cadenas que comienzan con &quot;b&quot;</h2>
+        <p>
+            Escriba una serie de cadenas, una por l&iacute;nea. S&oacute;lo se imprimen aqu&eacute;llas que comienzan con el car&aacute;cter <b>b</b> (se comprueba con el m&eacute;todo <b>charAt</b> de String).
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Cadenas (una por l&iacute;nea):</strong><br>
+                    <textarea id="cadenas" rows="10" cols="30">barco
+                    auto
+                    banana
+                    Casa
+                    bicicleta
+                    bosque
+                    &aacute;rbol
+                    Buenos Aires
+                    beso
+                    libro</textarea>
+                </label>
+                <br>
+                <input id="botonFiltrar" type="button" value="Filtrar cadenas">
+            </p>
+        </form>
+        <p id="resumen" style="font-weight: bold;"></p>
+        <p><strong>Cadenas que comienzan con &quot;b&quot;:</strong></p>
+        <textarea id="resultado" rows="10" cols="30" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_14.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_16.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

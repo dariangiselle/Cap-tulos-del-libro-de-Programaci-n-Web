@@ -1,0 +1,138 @@
+```html
+<!DOCTYPE html>
+<!-- Ejercicio 11.24 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.24</title>
+        <script>
+            var ESPACIOS = 9;
+
+            function darFormato( monto )
+            {
+                var partes = monto.toFixed( 2 ).split( "." );
+                var entero = partes[ 0 ];
+                var resultado = "";
+
+                for ( var i = 0; i < entero.length; ++i )
+                {
+                    if ( i > 0 && ( entero.length - i ) % 3 == 0 )
+                    {
+                        resultado += ",";
+                    }
+
+                    resultado += entero.charAt( i );
+                }
+
+                return resultado + "." + partes[ 1 ];
+            }
+
+            function proteger()
+            {
+                var campo = document.getElementById( "monto" );
+                var resultado = document.getElementById( "resultado" );
+                var monto = parseFloat( campo.value );
+
+                if ( isNaN( monto ) || monto < 0 )
+                {
+                    resultado.textContent = "Introduzca un monto válido (cero o mayor).";
+                    return;
+                }
+
+                var texto = darFormato( monto );
+
+                if ( texto.length > ESPACIOS )
+                {
+                    resultado.textContent = "El monto " + texto + " no cabe en " + ESPACIOS +
+                        " espacios (el máximo es 99,999.99).";
+                    return;
+                }
+
+                while ( texto.length < ESPACIOS )
+                {
+                    texto = "*" + texto;
+                }
+
+                resultado.textContent = texto + "\n123456789\n(monto protegido y números de posición)";
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); proteger(); }, false );
+
+                document.getElementById( "botonProteger" ).addEventListener( "click", proteger, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            pre#resultado {
+                font-family: monospace;
+                font-size: 1.3em;
+                display: inline-block;
+                border: 1px solid black;
+                padding: 6px;
+                background-color: #f4f4f4;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Protección de cheques</h2>
+
+        <p>
+            Introduzca el monto que se va a imprimir en un cheque. El monto se escribe con asteriscos al principio
+            para llenar los nueve espacios disponibles y evitar que alguien lo altere.
+        </p>
+
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Monto ($):</strong>
+                    <input id="monto" type="number" min="0" step="0.01">
+                </label>
+                <input id="botonProteger" type="button" value="Proteger monto">
+            </p>
+        </form>
+
+        <pre id="resultado"></pre>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_23.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_25.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>
+```

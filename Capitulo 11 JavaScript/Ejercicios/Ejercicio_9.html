@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- Ejercicio 11.9 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.9</title>
+        <script>
+            // Ejercicio 11.9: latín cerdo
+            var latin = ""; // todos los enunciados convertidos, que se muestran en el área de texto
+
+            // convierte una palabra: la primera letra pasa al final y se agregan las letras "ae"
+            function imprimirPalabraEnLatin( palabra )
+            {
+                latin += palabra.substring( 1 ) + palabra.charAt( 0 ) + "ae";
+            }
+
+            function traducir()
+            {
+                var campo = document.getElementById( "frase" );
+                var mensaje = document.getElementById( "mensaje" );
+                var frase = campo.value;
+
+                if ( frase.replace( / /g, "" ) == "" )
+                {
+                    mensaje.innerHTML = "Introduzca una frase.";
+                    return;
+                }
+
+                mensaje.innerHTML = "";
+                var palabras = frase.split( " " ); // tokenización de la frase
+
+                for ( var i = 0; i < palabras.length; ++i )
+                {
+                    if ( palabras[ i ] != "" )
+                    {
+                        imprimirPalabraEnLatin( palabras[ i ] );
+                    }
+
+                    if ( i < palabras.length - 1 )
+                    {
+                        latin += " "; // los espacios en blanco permanecen como espacios en blanco
+                    }
+                }
+
+                latin += "\n";
+                document.getElementById( "resultado" ).value = latin;
+                campo.value = "";
+                campo.focus();
+            }
+
+            function limpiar()
+            {
+                latin = "";
+                document.getElementById( "resultado" ).value = "";
+                document.getElementById( "mensaje" ).innerHTML = "";
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); traducir(); }, false );
+                document.getElementById( "botonTraducir" ).addEventListener( "click", traducir, false );
+                document.getElementById( "botonLimpiar" ).addEventListener( "click", limpiar, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            textarea { 
+                font-family: monospace; 
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Traductor a lat&iacute;n cerdo</h2>
+        <p>
+            Escriba una frase en espa&ntilde;ol sin signos de puntuaci&oacute;n y con palabras de dos o m&aacute;s letras. Cada palabra se
+            convierte colocando su primera letra al final y agregando las letras "ae": <b>salta</b> se convierte en
+            <b>altasae</b>, <b>el</b> en <b>leae</b> y <b>computadora</b> en <b>omputadoracae</b>.
+        </p>
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Frase en espa&ntilde;ol:</strong>
+                    <input id="frase" type="text" size="40">
+                </label>
+                <input id="botonTraducir" type="button" value="Traducir">
+                <input id="botonLimpiar" type="button" value="Limpiar">
+            </p>
+        </form>
+        <p id="mensaje" style="color: red; font-weight: bold;"></p>
+        <p><strong>Frases en lat&iacute;n cerdo:</strong></p>
+        <textarea id="resultado" rows="10" cols="50" readonly></textarea>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_8.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_10.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

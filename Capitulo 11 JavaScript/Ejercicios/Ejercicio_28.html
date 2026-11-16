@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<!-- Ejercicio 11.28 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.28</title>
+
+        <script>
+            var TAMANIO = 25;
+            var HORIZONTAL = 1;
+            var VERTICAL = 2;
+
+            var ejemplo = "internet:Red mundial de computadoras\n" +
+                "navegador:Programa para ver páginas Web\n" +
+                "javascript:Lenguaje de secuencias de comandos del navegador\n" +
+                "objeto:Entidad con atributos y comportamientos\n" +
+                "arreglo:Estructura que guarda una lista de valores\n" +
+                "cadena:Secuencia de caracteres\n" +
+                "método:Función que pertenece a un objeto\n" +
+                "fecha:Lo que guarda el objeto Date\n" +
+                "página:Documento HTML5 en la Web\n" +
+                "código:Instrucciones de un programa";
+
+            function normalizar(texto)
+            {
+                if (texto.normalize)
+                {
+                    texto = texto.normalize("NFC");
+                }
+
+                var conAcento = "ÁÉÍÓÚÜ";
+                var sinAcento = "AEIOUU";
+                texto = texto.toUpperCase();
+
+                var resultado = "";
+
+                for (var i = 0; i < texto.length; ++i)
+                {
+                    var posicion = conAcento.indexOf(texto.charAt(i));
+                    resultado += (posicion == -1) ? texto.charAt(i) : sinAcento.charAt(posicion);
+                }
+
+                return resultado;
+            }
+
+            function crearArreglo(valor)
+            {
+                var arreglo = new Array(TAMANIO);
+
+                for (var i = 0; i < TAMANIO; ++i)
+                {
+                    arreglo[i] = new Array(TAMANIO);
+
+                    for (var j = 0; j < TAMANIO; ++j)
+                    {
+                        arreglo[i][j] = valor;
+                    }
+                }
+
+                return arreglo;
+            }
+
+            function celda(cuadricula, fila, columna)
+            {
+                if (fila < 0 || columna < 0 || fila >= TAMANIO || columna >= TAMANIO)
+                {
+                    return "";
+                }
+
+                return cuadricula[fila][columna];
+            }
+
+            function mezclar(arreglo)
+            {
+                for (var i = arreglo.length - 1; i > 0; --i)
+                {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temporal = arreglo[i];
+                    arreglo[i] = arreglo[j];
+                    arreglo[j] = temporal;
+                }
+
+                return arreglo;
+            }
+
+            function revisarPosicion(estado, palabra, fila, columna, direccion)
+            {
+                var df = (direccion == VERTICAL) ? 1 : 0;
+                var dc = (direccion == HORIZONTAL) ? 1 : 0;
+                var finFila = fila + df * (palabra.length - 1);
+                var finColumna = columna + dc * (palabra.length - 1);
+
+                if (fila < 0 || columna < 0 || finFila >= TAMANIO || finColumna >= TAMANIO)
+                {
+                    return -1;
+                }
+
+                if (celda(estado.cuadricula, fila - df, columna - dc) != "" ||
+                    celda(estado.cuadricula, finFila + df, finColumna + dc) != "")
+                {
+                    return -1;
+                }
+
+                var cruces = 0;
+
+                for (var i = 0; i < palabra.length; ++i)
+                {
+                    var f = fila + df * i;
+                    var c = columna + dc * i;
+                    var actual = estado.cuadricula[f][c];
+
+                    if (actual != "")
+                    {
+                        if (actual != palabra.charAt(i) || (estado.usos[f][c] & direccion) != 0)
+                        {
+                            return -1;
+                        }
+
+                        ++cruces;
+                    }
+                    else if (direccion == HORIZONTAL)
+                    {
+                        if (celda(estado.cuadricula, f - 1, c) != "" ||
+                            celda(estado.cuadricula, f + 1, c) != "")
+                        {
+                            return -1;
+                        }
+                    }
+                    else
+                    {
+                        if (celda(estado.cuadricula, f, c - 1) != "" ||
+                            celda(estado.cuadricula, f, c + 1) != "")
+                        {
+                            return -1;
+                        }
+                    }
+                }
+
+                return cruces;
+            }
+
+            function colocarPalabra(estado, entrada, fila, columna, direccion)
+            {
+                var df = (direccion == VERTICAL) ? 1 : 0;
+                var dc = (direccion == HORIZONTAL) ? 1 : 0;
+
+                for (var i = 0; i < entrada.palabra.length; ++i)
+                {
+                    estado.cuadricula[fila + df * i][columna + dc * i] = entrada.palabra.charAt(i);
+                    estado.usos[fila + df * i][columna + dc * i] |= direccion;
+                }
+
+                estado.colocadas.push({
+                    palabra: entrada.palabra,
+                    pista: entrada.pista,
+                    fila: fila,
+                    columna: columna,
+                    direccion: direccion
+                });
+            }
+
+            function intentar(entradas)
+            {
+                var estado = {
+                    cuadricula: crearArreglo(""),
+                    usos: crearArreglo(0),
+                    colocadas: [],
+                    pendientes: []
+                };
+
+                var orden = mezclar(entradas.slice(0));
+                orden.sort(function(a, b) {
+                    return b.palabra.length - a.palabra.length;
+                });
+
+                colocarPalabra(
+                    estado,
+                    orden[0],
+                    Math.floor(TAMANIO / 2),
+                    Math.floor((TAMANIO - orden[0].palabra.length) / 2),
+                    HORIZONTAL
+                );
+
+                estado.pendientes = orden.slice(1);
+
+                var avanzo = true;
+
+                while (avanzo && estado.pendientes.length > 0)
+                {
+                    avanzo = false;
+                    var siguientes = [];
+
+                    for (var p = 0; p < estado.pendientes.length; ++p)
+                    {
+                        var entrada = estado.pendientes[p];
+                        var opciones = [];
+
+                        for (var k = 0; k < estado.colocadas.length; ++k)
+                        {
+                            var colocada = estado.colocadas[k];
+                            var direccion = (colocada.direccion == HORIZONTAL) ? VERTICAL : HORIZONTAL;
+
+                            for (var i = 0; i < entrada.palabra.length; ++i)
+                            {
+                                for (var j = 0; j < colocada.palabra.length; ++j)
+                                {
+                                    if (entrada.palabra.charAt(i) == colocada.palabra.charAt(j))
+                                    {
+                                        var fila, columna;
+
+                                        if (direccion == VERTICAL)
+                                        {
+                                            fila = colocada.fila - i;
+                                            columna = colocada.columna + j;
+                                        }
+                                        else
+                                        {
+                                            fila = colocada.fila + j;
+                                            columna = colocada.columna - i;
+                                        }
+
+                                        if (revisarPosicion(estado, entrada.palabra, fila, columna, direccion) >= 1)
+                                        {
+                                            opciones.push({
+                                                fila: fila,
+                                                columna: columna,
+                                                direccion: direccion
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (opciones.length > 0)
+                        {
+                            var elegida = opciones[Math.floor(Math.random() * opciones.length)];
+
+                            colocarPalabra(
+                                estado,
+                                entrada,
+                                elegida.fila,
+                                elegida.columna,
+                                elegida.direccion
+                            );
+
+                            avanzo = true;
+                        }
+                        else
+                        {
+                            siguientes.push(entrada);
+                        }
+                    }
+
+                    estado.pendientes = siguientes;
+                }
+
+                return estado;
+            }
+
+            function limites(estado)
+            {
+                var l = {
+                    minFila: TAMANIO,
+                    maxFila: 0,
+                    minColumna: TAMANIO,
+                    maxColumna: 0
+                };
+
+                for (var f = 0; f < TAMANIO; ++f)
+                {
+                    for (var c = 0; c < TAMANIO; ++c)
+                    {
+                        if (estado.cuadricula[f][c] != "")
+                        {
+                            l.minFila = Math.min(l.minFila, f);
+                            l.maxFila = Math.max(l.maxFila, f);
+                            l.minColumna = Math.min(l.minColumna, c);
+                            l.maxColumna = Math.max(l.maxColumna, c);
+                        }
+                    }
+                }
+
+                return l;
+            }
+
+            function numerar(estado)
+            {
+                var inicios = [];
+
+                for (var i = 0; i < estado.colocadas.length; ++i)
+                {
+                    var clave = estado.colocadas[i].fila * TAMANIO + estado.colocadas[i].columna;
+
+                    if (inicios.indexOf(clave) == -1)
+                    {
+                        inicios.push(clave);
+                    }
+                }
+
+                inicios.sort(function(a, b) {
+                    return a - b;
+                });
+
+                for (i = 0; i < estado.colocadas.length; ++i)
+                {
+                    estado.colocadas[i].numero = inicios.indexOf(
+                        estado.colocadas[i].fila * TAMANIO + estado.colocadas[i].columna
+                    ) + 1;
+                }
+            }
+
+            function dibujar(estado, respuestas)
+            {
+                var l = limites(estado);
+                var tabla = "<table class='crucigrama'>";
+
+                for (var f = l.minFila; f <= l.maxFila; ++f)
+                {
+                    tabla += "<tr>";
+
+                    for (var c = l.minColumna; c <= l.maxColumna; ++c)
+                    {
+                        var letra = estado.cuadricula[f][c];
+
+                        if (letra == "")
+                        {
+                            tabla += "<td class='negra'></td>";
+                        }
+                        else
+                        {
+                            var numero = "";
+
+                            for (var i = 0; i < estado.colocadas.length; ++i)
+                            {
+                                if (estado.colocadas[i].fila == f && estado.colocadas[i].columna == c)
+                                {
+                                    numero = "<span class='num'>" + estado.colocadas[i].numero + "</span>";
+                                    break;
+                                }
+                            }
+
+                            tabla += "<td class='letra'>" + numero +
+                                (respuestas ? letra : "&nbsp;") + "</td>";
+                        }
+                    }
+
+                    tabla += "</tr>";
+                }
+
+                return tabla + "</table>";
+            }
+
+            function listaDePistas(estado, direccion)
+            {
+                var elegidas = [];
+
+                for (var i = 0; i < estado.colocadas.length; ++i)
+                {
+                    if (estado.colocadas[i].direccion == direccion)
+                    {
+                        elegidas.push(estado.colocadas[i]);
+                    }
+                }
+
+                elegidas.sort(function(a, b) {
+                    return a.numero - b.numero;
+                });
+
+                var texto = "<ul class='pistas'>";
+
+                for (i = 0; i < elegidas.length; ++i)
+                {
+                    texto += "<li><b>" + elegidas[i].numero + ".</b> " + elegidas[i].pista +
+                        " (" + elegidas[i].palabra.length + " letras)</li>";
+                }
+
+                return texto + "</ul>";
+            }
+
+            function generar()
+            {
+                var lineas = document.getElementById("palabras").value.split("\n");
+                var entradas = [];
+                var resultado = document.getElementById("resultado");
+
+                for (var i = 0; i < lineas.length; ++i)
+                {
+                    var linea = lineas[i].replace(/^\s+|\s+$/g, "");
+
+                    if (linea != "")
+                    {
+                        var posicion = linea.indexOf(":");
+                        var palabra = normalizar(
+                            (posicion == -1) ? linea : linea.substring(0, posicion)
+                        ).replace(/[^A-ZÑ]/g, "");
+
+                        var pista = (posicion == -1) ? "(sin pista)" :
+                            linea.substring(posicion + 1).replace(/^\s+|\s+$/g, "");
+
+                        if (palabra.length >= 2 && palabra.length <= TAMANIO - 2)
+                        {
+                            entradas.push({
+                                palabra: palabra,
+                                pista: pista
+                            });
+                        }
+                    }
+                }
+
+                if (entradas.length < 2)
+                {
+                    resultado.innerHTML = "Escriba al menos dos palabras (una por línea, con el formato palabra:pista).";
+                    return;
+                }
+
+                var mejor = null;
+
+                for (var intento = 0; intento < 150; ++intento)
+                {
+                    var estado = intentar(entradas);
+
+                    if (mejor == null || estado.colocadas.length > mejor.colocadas.length)
+                    {
+                        mejor = estado;
+                    }
+
+                    if (mejor.pendientes.length == 0)
+                    {
+                        break;
+                    }
+                }
+
+                numerar(mejor);
+
+                var texto = "<h3>Crucigrama</h3>" + dibujar(mejor, false) +
+                    "<h3>Horizontales</h3>" + listaDePistas(mejor, HORIZONTAL) +
+                    "<h3>Verticales</h3>" + listaDePistas(mejor, VERTICAL) +
+                    "<h3>Solución</h3>" + dibujar(mejor, true);
+
+                if (mejor.pendientes.length > 0)
+                {
+                    var sinColocar = [];
+
+                    for (i = 0; i < mejor.pendientes.length; ++i)
+                    {
+                        sinColocar.push(mejor.pendientes[i].palabra);
+                    }
+
+                    texto += "<p><strong>No se pudieron colocar:</strong> " +
+                        sinColocar.join(", ") + ". Vuelva a generar el crucigrama.</p>";
+                }
+
+                resultado.innerHTML = texto;
+            }
+
+            function iniciar()
+            {
+                document.getElementById("palabras").value = ejemplo;
+                document.getElementById("botonGenerar").addEventListener("click", generar, false);
+                generar();
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+
+            h2 {
+                color: #2c3e50;
+            }
+
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+
+            table.crucigrama {
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            table.crucigrama td {
+                width: 28px;
+                height: 28px;
+                padding: 0;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            table.crucigrama td.letra {
+                border: 1px solid black;
+                position: relative;
+                background-color: white;
+            }
+
+            table.crucigrama td.negra {
+                background-color: black;
+            }
+
+            table.crucigrama span.num {
+                position: absolute;
+                top: 0;
+                left: 2px;
+                font-size: 9px;
+                font-weight: normal;
+            }
+
+            ul.pistas {
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+            textarea {
+                font-family: Arial, sans-serif;
+                padding: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Generador de crucigramas</h2>
+
+        <p>
+            Escriba una palabra por línea con el formato <b>palabra:pista</b>. El programa guarda la cuadrícula en un arreglo
+            bidimensional, coloca la primera palabra en el centro y cruza las demás por las letras que tienen en común.
+            Como la colocación es al azar, puede generar otra distribución con el botón.
+        </p>
+
+        <form id="formulario" action="#">
+            <p>
+                <textarea id="palabras" rows="10" cols="60"></textarea>
+                <br>
+                <input id="botonGenerar" type="button" value="Generar crucigrama">
+            </p>
+        </form>
+
+        <div id="resultado"></div>
+
+        <script>
+            document.writeln("<nav>");
+            document.writeln("<a href='Ejercicio_27.html'>Anterior</a> | ");
+            document.writeln("<a href='../index_cap11.html'>Menú Capítulo 11</a> | ");
+            document.writeln("<a href='Ejercicio_1.html'>Siguiente</a>");
+            document.writeln("</nav>");
+        </script>
+    </body>
+</html>

@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!-- Ejercicio 11.27 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.27</title>
+
+        <script>
+            var listaDePalabras = [];
+            var alfabeto = "abcdefghijklmnñopqrstuvwxyz";
+
+            var vecinas = {
+                q: "wa", w: "qes", e: "wrd", r: "etf", t: "ryg", y: "tuh", u: "yij", i: "uok", o: "ipl",
+                p: "oñ", a: "qsz", s: "awdxz", d: "serfcx", f: "drtgvc", g: "ftyhbv", h: "gyujnb",
+                j: "huikmn", k: "jiolm", l: "kopñ", ñ: "lp", z: "asx", x: "zsdc", c: "xdfv", v: "cfgb",
+                b: "vghn", n: "bhjm", m: "njk"
+            };
+
+            var conAcento = { a: "á", e: "é", i: "í", o: "ó", u: "ú" };
+
+            function leerLista()
+            {
+                var lineas = document.getElementById("diccionario").value.split("\n");
+                listaDePalabras = [];
+
+                for (var i = 0; i < lineas.length; ++i)
+                {
+                    var palabra = lineas[i].replace(/^\s+|\s+$/g, "").toLowerCase();
+
+                    if (palabra != "")
+                    {
+                        listaDePalabras.push(palabra);
+                    }
+                }
+
+                document.getElementById("cantidad").innerHTML = listaDePalabras.length;
+            }
+
+            function estaEnLista(palabra)
+            {
+                for (var i = 0; i < listaDePalabras.length; ++i)
+                {
+                    if (listaDePalabras[i] == palabra)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            function transposiciones(palabra)
+            {
+                var resultado = [];
+
+                for (var i = 0; i < palabra.length - 1; ++i)
+                {
+                    resultado.push(palabra.substring(0, i) + palabra.charAt(i + 1) +
+                        palabra.charAt(i) + palabra.substring(i + 2));
+                }
+
+                return resultado;
+            }
+
+            function sinLetrasDobles(palabra)
+            {
+                var resultado = [];
+
+                for (var i = 0; i < palabra.length - 1; ++i)
+                {
+                    if (palabra.charAt(i) == palabra.charAt(i + 1))
+                    {
+                        resultado.push(palabra.substring(0, i) + palabra.substring(i + 1));
+                    }
+                }
+
+                return resultado;
+            }
+
+            function agregarAcentos(palabra)
+            {
+                var resultado = [];
+
+                for (var i = 0; i < palabra.length; ++i)
+                {
+                    var acento = conAcento[palabra.charAt(i)];
+
+                    if (acento)
+                    {
+                        resultado.push(palabra.substring(0, i) + acento + palabra.substring(i + 1));
+                    }
+                }
+
+                return resultado;
+            }
+
+            function teclasVecinas(palabra)
+            {
+                var resultado = [];
+
+                for (var i = 0; i < palabra.length; ++i)
+                {
+                    var cercanas = vecinas[palabra.charAt(i)];
+
+                    if (cercanas)
+                    {
+                        for (var j = 0; j < cercanas.length; ++j)
+                        {
+                            resultado.push(palabra.substring(0, i) + cercanas.charAt(j) +
+                                palabra.substring(i + 1));
+                        }
+                    }
+                }
+
+                return resultado;
+            }
+
+            function letraDeMas(palabra)
+            {
+                var resultado = [];
+
+                for (var i = 0; i < palabra.length; ++i)
+                {
+                    resultado.push(palabra.substring(0, i) + palabra.substring(i + 1));
+                }
+
+                return resultado;
+            }
+
+            function letraFaltante(palabra)
+            {
+                var resultado = [];
+
+                for (var i = 0; i <= palabra.length; ++i)
+                {
+                    for (var j = 0; j < alfabeto.length; ++j)
+                    {
+                        resultado.push(palabra.substring(0, i) + alfabeto.charAt(j) +
+                            palabra.substring(i));
+                    }
+                }
+
+                return resultado;
+            }
+
+            function revisar()
+            {
+                leerLista();
+
+                var palabra = document.getElementById("palabra").value.replace(/^\s+|\s+$/g, "").toLowerCase();
+                var resultado = document.getElementById("resultado");
+
+                if (palabra == "")
+                {
+                    resultado.innerHTML = "Introduzca una palabra.";
+                    return;
+                }
+
+                if (estaEnLista(palabra))
+                {
+                    resultado.innerHTML = "<strong>La palabra está escrita correctamente</strong>";
+                    return;
+                }
+
+                var candidatos = transposiciones(palabra).concat(
+                    sinLetrasDobles(palabra),
+                    agregarAcentos(palabra),
+                    teclasVecinas(palabra),
+                    letraDeMas(palabra),
+                    letraFaltante(palabra)
+                );
+
+                var sugerencias = [];
+
+                for (var i = 0; i < candidatos.length; ++i)
+                {
+                    if (estaEnLista(candidatos[i]) && sugerencias.indexOf(candidatos[i]) == -1)
+                    {
+                        sugerencias.push(candidatos[i]);
+                    }
+                }
+
+                var texto = "<strong>La palabra no está escrita correctamente</strong>";
+
+                for (i = 0; i < sugerencias.length; ++i)
+                {
+                    texto += "<br>¿Quiso decir &quot;" + sugerencias[i] + "&quot;?";
+                }
+
+                if (sugerencias.length == 0)
+                {
+                    texto += "<br>No se encontraron palabras parecidas en la lista.";
+                }
+
+                resultado.innerHTML = texto;
+            }
+
+            function iniciar()
+            {
+                document.getElementById("formulario").addEventListener("submit",
+                    function(evento) {
+                        evento.preventDefault();
+                        revisar();
+                    }, false);
+
+                document.getElementById("botonRevisar").addEventListener("click", revisar, false);
+                document.getElementById("diccionario").addEventListener("input", leerLista, false);
+
+                leerLista();
+            }
+
+            window.addEventListener("load", iniciar, false);
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+
+            h2 {
+                color: #2c3e50;
+            }
+
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+
+            textarea {
+                font-family: Arial, sans-serif;
+                padding: 5px;
+            }
+
+            input[type="text"] {
+                padding: 5px;
+            }
+
+            #resultado {
+                color: #2c3e50;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Corrector ortográfico</h2>
+
+        <p>
+            El arreglo <b>listaDePalabras</b> se llena con las palabras de la siguiente área de texto (una por línea);
+            puede agregar o quitar palabras. Después escriba una palabra para revisarla. Si no está en la lista, se prueban
+            transposiciones de letras adyacentes, letras dobles, vocales sin acento, teclas cercanas, letras de más y
+            letras que faltan, para sugerir palabras de la lista.
+        </p>
+
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Lista de palabras</strong> (<span id="cantidad">0</span> palabras):<br>
+                    <textarea id="diccionario" rows="8" cols="30">predeterminado
+útil
+cumpleaños
+computadora
+programación
+javascript
+objeto
+arreglo
+cadena
+método
+función
+variable
+número
+página
+navegador
+internet
+estudiante
+profesor
+escuela
+teléfono
+manzana
+ventana
+camino
+ciudad
+música
+jardín
+verano
+invierno
+ejercicio
+familia
+trabajo
+amigo</textarea>
+                </label>
+            </p>
+
+            <p>
+                <label><strong>Palabra a revisar:</strong>
+                    <input id="palabra" type="text" size="20">
+                </label>
+
+                <input id="botonRevisar" type="button" value="Revisar">
+            </p>
+        </form>
+
+        <p>
+            Pruebe con: perdeterminado, úttil, util, cunpleaños, computdora, javascrip, estudante.
+        </p>
+
+        <p id="resultado"></p>
+
+        <script>
+            document.writeln("<nav>");
+            document.writeln("<a href='Ejercicio_26.html'>Anterior</a> | ");
+            document.writeln("<a href='../index_cap11.html'>Menú Capítulo 11</a> | ");
+            document.writeln("<a href='Ejercicio_28.html'>Siguiente</a>");
+            document.writeln("</nav>");
+        </script>
+    </body>
+</html>

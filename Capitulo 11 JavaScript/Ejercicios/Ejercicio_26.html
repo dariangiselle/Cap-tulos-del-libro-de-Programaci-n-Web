@@ -1,0 +1,206 @@
+```html
+<!DOCTYPE html>
+<!-- Ejercicio 11.26 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 11.26</title>
+        <script>
+            var unidades = [
+                { nombres: [ "milimetro", "milimetros" ], tipo: "longitud", factor: 0.001 },
+                { nombres: [ "centimetro", "centimetros" ], tipo: "longitud", factor: 0.01 },
+                { nombres: [ "metro", "metros" ], tipo: "longitud", factor: 1 },
+                { nombres: [ "kilometro", "kilometros" ], tipo: "longitud", factor: 1000 },
+                { nombres: [ "pulgada", "pulgadas" ], tipo: "longitud", factor: 0.0254 },
+                { nombres: [ "pie", "pies" ], tipo: "longitud", factor: 0.3048 },
+                { nombres: [ "yarda", "yardas" ], tipo: "longitud", factor: 0.9144 },
+                { nombres: [ "milla", "millas" ], tipo: "longitud", factor: 1609.344 },
+                { nombres: [ "miligramo", "miligramos" ], tipo: "masa", factor: 0.000001 },
+                { nombres: [ "gramo", "gramos" ], tipo: "masa", factor: 0.001 },
+                { nombres: [ "kilogramo", "kilogramos", "kilo", "kilos" ], tipo: "masa", factor: 1 },
+                { nombres: [ "onza", "onzas" ], tipo: "masa", factor: 0.028349523 },
+                { nombres: [ "libra", "libras" ], tipo: "masa", factor: 0.45359237 },
+                { nombres: [ "mililitro", "mililitros" ], tipo: "volumen", factor: 0.001 },
+                { nombres: [ "litro", "litros" ], tipo: "volumen", factor: 1 },
+                { nombres: [ "pinta", "pintas" ], tipo: "volumen", factor: 0.473176473 },
+                { nombres: [ "cuarto", "cuartos" ], tipo: "volumen", factor: 0.946352946 },
+                { nombres: [ "galon", "galones" ], tipo: "volumen", factor: 3.785411784 }
+            ];
+
+            function normalizar( texto )
+            {
+                var conAcento = "áéíóúü";
+                var sinAcento = "aeiouu";
+                texto = texto.toLowerCase();
+                var resultado = "";
+
+                for ( var i = 0; i < texto.length; ++i )
+                {
+                    var posicion = conAcento.indexOf( texto.charAt( i ) );
+                    resultado += ( posicion == -1 ) ? texto.charAt( i ) : sinAcento.charAt( posicion );
+                }
+
+                return resultado.replace( /\s+/g, " " ).replace( /^ | $/g, "" );
+            }
+
+            function buscarUnidad( nombre )
+            {
+                for ( var i = 0; i < unidades.length; ++i )
+                {
+                    if ( unidades[ i ].nombres.indexOf( nombre ) != -1 )
+                    {
+                        return unidades[ i ];
+                    }
+                }
+
+                return null;
+            }
+
+            function convertir()
+            {
+                var pregunta = document.getElementById( "pregunta" ).value;
+                var resultado = document.getElementById( "resultado" );
+                var texto = normalizar( pregunta.replace( /[¿?]/g, "" ) );
+
+                var partes = /^cuant[oa]s? (.+?) hay en (-?\d+(?:[.,]\d+)?) (.+)$/.exec( texto );
+
+                if ( partes == null )
+                {
+                    resultado.innerHTML = "No entendí la pregunta. Use el formato: ¿Cuántas pulgadas hay en 2 metros?";
+                    return;
+                }
+
+                var nombreDestino = partes[ 1 ];
+                var cantidad = parseFloat( partes[ 2 ].replace( ",", "." ) );
+                var nombreOrigen = partes[ 3 ];
+                var destino = buscarUnidad( nombreDestino );
+                var origen = buscarUnidad( nombreOrigen );
+
+                if ( destino == null )
+                {
+                    resultado.innerHTML = "No reconozco la unidad &quot;" + nombreDestino + "&quot;.";
+                    return;
+                }
+
+                if ( origen == null )
+                {
+                    resultado.innerHTML = "No reconozco la unidad &quot;" + nombreOrigen + "&quot;.";
+                    return;
+                }
+
+                if ( origen.tipo != destino.tipo )
+                {
+                    resultado.innerHTML = "<strong>Conversión inválida:</strong> los " + nombreOrigen +
+                        " son unidades de " + origen.tipo + ", mientras que los " + nombreDestino +
+                        " son unidades de " + destino.tipo + ".";
+                    return;
+                }
+
+                var valor = cantidad * origen.factor / destino.factor;
+
+                resultado.innerHTML = "<strong>" + cantidad + " " + nombreOrigen + " = " +
+                    Number( valor.toPrecision( 6 ) ) + " " + nombreDestino + "</strong>";
+            }
+
+            function mostrarUnidades()
+            {
+                var tipos = [ "longitud", "masa", "volumen" ];
+                var texto = "";
+
+                for ( var i = 0; i < tipos.length; ++i )
+                {
+                    var nombres = [];
+
+                    for ( var j = 0; j < unidades.length; ++j )
+                    {
+                        if ( unidades[ j ].tipo == tipos[ i ] )
+                        {
+                            nombres.push( unidades[ j ].nombres[ 1 ] );
+                        }
+                    }
+
+                    texto += "<li><b>" + tipos[ i ] + ":</b> " + nombres.join( ", " ) + "</li>";
+                }
+
+                document.getElementById( "unidades" ).innerHTML = texto;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "formulario" ).addEventListener( "submit",
+                    function( evento ) { evento.preventDefault(); convertir(); }, false );
+
+                document.getElementById( "botonConvertir" ).addEventListener( "click", convertir, false );
+
+                mostrarUnidades();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h2 {
+                color: #2c3e50;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Conversiones métricas</h2>
+
+        <p>
+            Escriba una pregunta simple como <b>¿Cuántas pulgadas hay en 2 metros?</b> o
+            <b>¿Cuántos litros hay en 10 cuartos?</b>. Si la conversión no es posible, por ejemplo
+            <b>¿Cuántos pies hay en 5 kilogramos?</b>, el programa lo indica.
+        </p>
+
+        <form id="formulario" action="#">
+            <p>
+                <label><strong>Pregunta:</strong>
+                    <input id="pregunta" type="text" size="50" value="¿Cuántas pulgadas hay en 2 metros?">
+                </label>
+                <input id="botonConvertir" type="button" value="Convertir">
+            </p>
+        </form>
+
+        <p id="resultado"></p>
+
+        <p><strong>Unidades que se reconocen:</strong></p>
+        <ul id="unidades"></ul>
+
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_25.html">← Anterior</a> | ' +
+                '<a href="../index_cap11.html">Menú del Capítulo 11</a> | ' +
+                '<a href="Ejercicio_27.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>
+```

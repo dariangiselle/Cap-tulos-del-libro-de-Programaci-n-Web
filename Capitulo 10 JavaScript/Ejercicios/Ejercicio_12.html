@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 12 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.12</title>
+
+        <script type="text/javascript">
+            
+            var unicos = [];
+            var contadorEntradas = 0;
+
+            function procesarNumero() {
+                if ( contadorEntradas >= 10 ) {
+                    alert( "Ya se han ingresado los 10 números requeridos." );
+                    return;
+                }
+
+                var inputNum = document.getElementById( "numeroInput" );
+                var valor = parseInt( inputNum.value );
+
+                if ( isNaN( valor ) || valor < 10 || valor > 100 ) {
+                    alert( "Por favor, ingrese un número válido entre 10 y 100." );
+                    return;
+                }
+
+                contadorEntradas++;
+
+                var esDuplicado = false;
+                for ( var i = 0; i < unicos.length; ++i ) {
+                    if ( unicos[ i ] === valor ) {
+                        esDuplicado = true;
+                        break;
+                    }
+                }
+
+                var salidaDiv = document.getElementById( "salidaResultados" );
+                var mensajeActual = salidaDiv.innerHTML;
+
+                if ( !esDuplicado ) {
+                    unicos.push( valor );
+                    mensajeActual += "<p style='color: #27ae60;'><b>Entrada #" + contadorEntradas + " (" + valor + "):</b> <strong style='color: #2980b9;'>Impreso (Número único)</strong></p>";
+                } else {
+                    mensajeActual += "<p style='color: #e74c3c;'><b>Entrada #" + contadorEntradas + " (" + valor + "):</b> Duplicado (No se imprime)</p>";
+                }
+
+                salidaDiv.innerHTML = mensajeActual;
+                inputNum.value = "";
+                inputNum.focus();
+
+                if ( contadorEntradas === 10 ) {
+                    salidaDiv.innerHTML += "<p style='color: #8e44ad; font-weight: bold;'>¡Se han completado las 10 entradas! Arreglo final de valores únicos: [ " + unicos.join( ", " ) + " ]</p>";
+                    document.getElementById( "btnEnviar" ).disabled = true;
+                    inputNum.disabled = true;
+                }
+            }
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+                background-color: #f9f9f9;
+            }
+            h1 {
+                color: #1abc9c;
+            }
+            .container {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                max-width: 600px;
+                margin-bottom: 20px;
+            }
+            input[type="number"] {
+                padding: 8px;
+                font-size: 16px;
+                width: 200px;
+                margin-right: 10px;
+            }
+            button {
+                padding: 8px 15px;
+                font-size: 16px;
+                background-color: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #1f618d;
+            }
+            .resultado-box {
+                margin-top: 15px;
+                padding: 10px;
+                background-color: #ecf0f1;
+                border-left: 4px solid #27ae60;
+                font-size: 15px;
+                line-height: 1.5;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Ejercicio 10.12</h1>
+        <div class="container">
+            <p style="color: #2c3e50;"><b>Números Únicos entre 10 y 100</b></p>
+            <p>Escriba un número a la vez (lleva <span id="contadorVal">10</span> números en total):</p>
+            
+            <input type="number" id="numeroInput" placeholder="Ej. 45" min="10" max="100">
+            <button id="btnEnviar" onclick="procesarNumero()">Ingresar Número</button>
+
+            <div id="salidaResultados" class="resultado-box">
+                <p><i>Resultados de los números ingresados</i></p>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_11.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_13.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

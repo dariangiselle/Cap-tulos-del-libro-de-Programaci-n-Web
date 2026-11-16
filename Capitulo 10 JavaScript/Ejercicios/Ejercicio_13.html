@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 13 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.13</title>
+        
+        <script type="text/javascript">
+            function generarTablaRecorrido() {
+                var ventas = [
+                    [ 0, 0, 0, 0, 0 ],
+                    [ 0, 0, 0, 0, 0 ],
+                    [ 0, 0, 0, 0, 0 ]
+                ];
+
+                var html = "<table><tr><th>Fila / Columna</th><th>Columna 0</th><th>Columna 1</th><th>Columna 2</th><th>Columna 3</th><th>Columna 4</th></tr>";
+
+                var orden = 1;
+
+                // Simulación del ciclo indicado en la instrucción
+                for ( var fila = 0; fila < 3; ++fila ) {
+                    html += "<tr><th>Fila " + fila + "</th>";
+                    for ( var col = 0; col < 5; ++col ) {
+                        html += "<td>";
+                        html += "<span class='nombre-elem'>ventas[" + fila + "][" + col + "]</span><br>";
+                        html += "<span class='paso'>Paso " + orden + "</span>";
+                        html += "</td>";
+                        orden++;
+                    }
+                    html += "</tr>";
+                }
+
+                html += "</table>";
+                document.getElementById( "matrizResultado" ).innerHTML = html;
+            }
+
+            window.onload = generarTablaRecorrido;
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+                background-color: #f9f9f9;
+            }
+            h1 {
+                color: #1abc9c;
+            }
+            .container {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                max-width: 750px;
+                margin-bottom: 20px;
+            }
+            code {
+                color: #c0392b;
+                background-color: #ecf0f1;
+                padding: 10px;
+                display: block;
+                border-radius: 4px;
+                white-space: pre-wrap;
+                margin-bottom: 15px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 15px;
+            }
+            th, td {
+                border: 1px solid #bdc3c7;
+                padding: 12px;
+                text-align: center;
+            }
+            th {
+                background-color: #2c3e50;
+                color: white;
+            }
+            td {
+                background-color: #ffffff;
+            }
+            .paso {
+                color: #e74c3c;
+                font-weight: bold;
+                display: block;
+            }
+            .nombre-elem {
+                color: #2980b9;
+                font-family: monospace;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Ejercicio 10.13</h1>
+        <div class="container">
+            <p style="color: #2c3e50;"><b>Etiquete los elementos del arreglo bidimensional de 3 x 5 llamado ventas para indicar el orden en el que se deben establecer en cero mediante el siguiente segmento de programa:</b></p>
+
+            <code>for ( var fila in ventas )
+{
+    for ( var col in ventas[ fila ] )
+    {
+        ventas[ fila ][ col ] = 0;
+    }
+}</code>
+
+            <p><b>Orden de ejecución:</b> El ciclo exterior recorre las filas en orden descendente por índice (0, 1, 2) y el ciclo interior recorre cada columna de izquierda a derecha (0, 1, 2, 3, 4). Orden paso a paso:</p>
+
+            <div id="matrizResultado"></div>
+        </div>
+        
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_12.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_14.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

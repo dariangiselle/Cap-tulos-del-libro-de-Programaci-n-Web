@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 15 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.15</title>
+        
+        <script>
+            // Ejercicio 10.15: gráficos de tortuga
+            var programas = [
+                { nombre: "Cuadrado de 12 por 12",
+                comandos: [ "2", "5,12", "3", "5,12", "3", "5,12", "3", "5,12", "1", "6", "9" ] },
+                { nombre: "Rectángulo de 15 por 8",
+                comandos: [ "2", "5,15", "3", "5,8", "3", "5,15", "3", "5,8", "1", "6", "9" ] }      ];
+
+            // convierte el texto del cuadro de comandos en un arreglo de números
+            function leerComandos()
+            {
+                var texto = document.getElementById( "comandos" ).value.replace( /,/g, " " );
+                var partes = texto.split( /\s+/ );
+                var comandos = [];
+                for ( var i = 0; i < partes.length; ++i )
+                {
+                    if ( partes[ i ] != "" )
+                    {
+                        comandos.push( parseInt( partes[ i ] ) );
+                    }
+                }
+                return comandos;
+            }
+
+            function ejecutar()
+            {
+                // piso de 20 por 20 inicializado en ceros
+                var piso = new Array( 20 );
+                for ( var i = 0; i < 20; ++i )
+                {
+                    piso[ i ] = new Array( 20 );
+                    for ( var j = 0; j < 20; ++j )
+                    {
+                        piso[ i ][ j ] = 0;
+                    }
+                }
+
+                var fila = 0, columna = 0; // la tortuga empieza en la posición (0, 0)
+                var pluma = false;         // la pluma empieza arriba
+                var direccion = 0;         // 0 = derecha, 1 = abajo, 2 = izquierda, 3 = arriba
+                var deltaFila = [ 0, 1, 0, -1 ];
+                var deltaColumna = [ 1, 0, -1, 0 ];
+                var nombresDireccion = [ "derecha", "abajo", "izquierda", "arriba" ];
+
+                var comandos = leerComandos();
+                var salida = "";
+                var impresiones = 0;
+                var terminado = false;
+                var posicion = 0;
+
+                while ( posicion < comandos.length && !terminado )
+                {
+                    var comando = comandos[ posicion ];
+                    ++posicion;
+
+                    switch ( comando )
+                    {
+                        case 1: // pluma arriba
+                        pluma = false;
+                        break;
+                        case 2: // pluma abajo
+                        pluma = true;
+                        piso[ fila ][ columna ] = 1;
+                        break;
+                        case 3: // girar a la derecha
+                        direccion = ( direccion + 1 ) % 4;
+                        break;
+                        case 4: // girar a la izquierda
+                        direccion = ( direccion + 3 ) % 4;
+                        break;
+                        case 5: // avanzar n espacios
+                        var espacios = comandos[ posicion ];
+                        ++posicion;
+                        if ( isNaN( espacios ) )
+                        {
+                            salida += "Aviso: el comando 5 necesita el número de espacios (por ejemplo 5,10).\n";
+                            break;
+                        }
+                        for ( var k = 0; k < espacios; ++k )
+                        {
+                            var nuevaFila = fila + deltaFila[ direccion ];
+                            var nuevaColumna = columna + deltaColumna[ direccion ];
+                            if ( nuevaFila < 0 || nuevaFila > 19 || nuevaColumna < 0 || nuevaColumna > 19 )
+                            {
+                                salida += "Aviso: la tortuga llegó al borde del piso (avanzaba hacia la " + nombresDireccion[ direccion ] + ") y no puede avanzar más.\n";
+                                break;
+                            }
+                            fila = nuevaFila;
+                            columna = nuevaColumna;
+                            if ( pluma )
+                            {
+                                piso[ fila ][ columna ] = 1;
+                            }
+                        }
+                        break;
+                        case 6: // imprimir el arreglo de 20 por 20
+                        ++impresiones;
+                        salida += "Impresión " + impresiones + ":\n+--------------------+\n";
+                        for ( i = 0; i < 20; ++i )
+                        {
+                            var linea = "|";
+                            for ( j = 0; j < 20; ++j )
+                            {
+                                linea += ( piso[ i ][ j ] == 1 ) ? "*" : " ";
+                            }
+                            salida += linea + "|\n";
+                        }
+                        salida += "+--------------------+\n";
+                        break;
+                        case 9: // fin de datos
+                        terminado = true;
+                        break;
+                        default:
+                        salida += "Aviso: el comando " + comando + " no es válido y se ignoró.\n";
+                    }
+                }
+
+                if ( impresiones == 0 )
+                {
+                    salida += "El programa no incluyó el comando 6, por eso no se imprimió el piso.\n";
+                }
+                document.getElementById( "salida" ).textContent = salida;
+            }
+
+            function cargarPrograma()
+            {
+                var indice = document.getElementById( "programas" ).value;
+                document.getElementById( "comandos" ).value = programas[ indice ].comandos.join( "\n" );
+                ejecutar();
+            }
+
+            function iniciar()
+            {
+                var lista = document.getElementById( "programas" );
+                for ( var i = 0; i < programas.length; ++i )
+                {
+                var opcion = document.createElement( "option" );
+                opcion.value = i;
+                opcion.textContent = programas[ i ].nombre;
+                lista.appendChild( opcion );
+                }
+                lista.addEventListener( "change", cargarPrograma, false );
+                document.getElementById( "botonEjecutar" ).addEventListener( "click", ejecutar, false );
+                cargarPrograma();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            pre#salida {font-family: monospace;
+                  display: inline-block;
+                  border: 1px solid black;
+                  padding: 6px;
+                  background-color: #f4f4f4;}
+
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <h1>Ejercicio 10.15 Gráficos de tortuga</h1>
+        <p>
+            La tortuga empieza en la posición (0, 0) del piso de 20 por 20, mirando a la derecha y con la pluma arriba.
+            Comandos: <b>1</b> pluma arriba, <b>2</b> pluma abajo, <b>3</b> girar a la derecha, <b>4</b> girar a la izquierda,
+            <b>5,n</b> avanzar n espacios, <b>6</b> imprimir el arreglo de 20 por 20, <b>9</b> fin de datos.
+        </p>
+        <p>
+            <label><strong>Programa:</strong> <select id = "programas"></select></label>
+        </p>
+        <p>
+            <label><strong>Comandos</strong> (uno por línea, o separados por comas o espacios):<br>
+                <textarea id = "comandos" rows = "10" cols = "24"></textarea>
+            </label>
+            <br>
+            <input id = "botonEjecutar" type = "button" value = "Ejecutar">
+        </p>
+        <pre id = "salida"></pre>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_14.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_16.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

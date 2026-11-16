@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 10 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.10</title>
+
+        <script>
+      // Ejercicio 10.10: un arreglo de contadores, uno por cada rango de salarios
+      var contadores = [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+      var rangos = [ "$0 a 200", "$200 a 299", "$300 a 399", "$400 a 499", "$500 a 599", "$600 a 699",
+                     "$700 a 799", "$800 a 899", "$900 a 999", "$1000 y más" ];
+      var totalVendedores = 0;
+
+      // obtiene las ventas brutas de un vendedor y cuenta su salario en el rango que le corresponde
+      function agregarVendedor()
+      {
+        var campo = document.getElementById( "ventas" );
+        var mensaje = document.getElementById( "mensaje" );
+        var ventas = parseFloat( campo.value );
+
+        if ( isNaN( ventas ) || ventas < 0 )
+        {
+          mensaje.innerHTML = "Introduzca un monto de ventas brutas válido (cero o mayor).";
+          return;
+        }
+
+        // $200 por semana más el 9 por ciento de las ventas brutas, truncado a un monto entero
+        var salario = Math.floor( ( 20000 + ventas * 9 ) / 100 );
+
+        var indice = Math.floor( salario / 100 ) - 2; // $200 a 299 -> 0, $300 a 399 -> 1, ...
+        if ( indice > 8 )
+        {
+          indice = 8; // $1000 y más
+        }
+
+        ++contadores[ indice ];
+        ++totalVendedores;
+        mensaje.innerHTML = "Vendedor " + totalVendedores + ": ventas brutas de $" + ventas.toFixed( 2 ) +
+          ", salario de $" + salario + " (rango " + rangos[ indice ] + ").";
+        campo.value = "";
+        campo.focus();
+        mostrarTabla();
+      }
+
+      // muestra cuántos vendedores hay en cada rango
+      function mostrarTabla()
+      {
+        var tabla = "<table class = 'datos'><tr><th>Rango de salario</th><th>Vendedores</th></tr>";
+        for ( var i = 0; i < contadores.length; ++i )
+        {
+          tabla += "<tr><td>" + rangos[ i ] + "</td><td>" + contadores[ i ] + "</td></tr>";
+        }
+        tabla += "<tr><th>Total</th><th>" + totalVendedores + "</th></tr></table>";
+        document.getElementById( "tabla" ).innerHTML = tabla;
+      }
+
+      function reiniciar()
+      {
+        for ( var i = 0; i < contadores.length; ++i )
+        {
+          contadores[ i ] = 0;
+        }
+        totalVendedores = 0;
+        document.getElementById( "mensaje" ).innerHTML = "";
+        mostrarTabla();
+      }
+
+      function iniciar()
+      {
+        document.getElementById( "formulario" ).addEventListener( "submit",
+          function( evento ) { evento.preventDefault(); agregarVendedor(); }, false );
+        document.getElementById( "botonAgregar" ).addEventListener( "click", agregarVendedor, false );
+        document.getElementById( "botonReiniciar" ).addEventListener( "click", reiniciar, false );
+        mostrarTabla();
+      }
+
+      window.addEventListener( "load", iniciar, false );
+    </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+                background-color: #f9f9f9;
+            }
+            h1 {
+                color: #1abc9c;
+            }
+            table.datos {border-collapse: collapse;}
+            table.datos td, table.datos th {border: 1px solid black;
+                                      padding: 4px 12px;
+                                      text-align: center;}
+            table.datos th {color: white; background-color: darkblue;}
+            
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Ejercicio 10.10</h1>
+        <p>
+            Un vendedor recibe $200 por semana más el 9 por ciento de sus ventas brutas de esa semana.
+            Introduzca las ventas brutas de cada vendedor para contar cuántos obtuvieron salarios en cada rango
+            (el salario se trunca a un monto entero).
+        </p>
+        <form id = "formulario" action = "#">
+        <p>
+            <label><strong>Ventas brutas de la semana ($):</strong>
+            <input id = "ventas" type = "number" min = "0" step = "any">
+            </label>
+            <input id = "botonAgregar" type = "button" value = "Agregar vendedor">
+            <input id = "botonReiniciar" type = "button" value = "Reiniciar">
+        </p>
+        </form>
+        <p id = "mensaje"></p>
+        <div id = "tabla"></div>
+        <hr>
+                
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_9.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_11.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

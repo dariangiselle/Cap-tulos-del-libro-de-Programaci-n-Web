@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- Documento de HTML5 para el ejemplo de tiro de dados. -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Frecuencias de tiro de dado</title>
+        <link rel = "stylesheet" type = "text/css" href = "estilo.css">
+        <script src = "js/TirarDados.js"></script>
+
+        <style type="text/css">
+            img {
+                width: 60px; /* Ancho deseado para que no salgan gigantes */
+                height: auto; /* Mantiene la proporción */
+            }
+            
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <p>
+            <img id = "dado1" src = "imagenes/blanco.png" alt = "imagen dado 1">
+            <img id = "dado2" src = "imagenes/blanco.png" alt = "imagen dado 2">
+            <img id = "dado3" src = "imagenes/blanco.png" alt = "imagen dado 3">
+            <img id = "dado4" src = "imagenes/blanco.png" alt = "imagen dado 4">
+            <img id = "dado5" src = "imagenes/blanco.png" alt = "imagen dado 5">
+            <img id = "dado6" src = "imagenes/blanco.png" alt = "imagen dado 6">
+        </p>
+        <p>
+            <img id = "dado7" src = "imagenes/blanco.png" alt = "imagen dado 7">
+            <img id = "dado8" src = "imagenes/blanco.png" alt = "imagen dado 8">
+            <img id = "dado9" src = "imagenes/blanco.png" alt = "imagen dado 9">
+            <img id = "dado10" src = "imagenes/blanco.png" alt = "imagen dado 10">
+            <img id = "dado11" src = "imagenes/blanco.png" alt = "imagen dado 11">
+            <img id = "dado12" src = "imagenes/blanco.png" alt = "imagen dado 12">
+        </p>
+        <form action = "#">
+            <input id = "botonTirar" type = "button" value = "Tirar dados">
+        </form>
+        <div id = "divTablaFrecuencias"></div>
+        
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejemplo_3.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejemplo_5.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+
+    </body>
+</html>

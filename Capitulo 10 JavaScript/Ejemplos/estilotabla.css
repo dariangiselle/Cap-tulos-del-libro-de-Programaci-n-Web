@@ -1,0 +1,29 @@
+/* estilotabla.css */
+table {
+    width: auto; 
+    min-width: 250px; 
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px; 
+}
+
+table, th, td {
+    border: 1px solid #999;
+}
+
+th {
+    background-color: #333;
+    color: white;
+    padding: 4px 8px; 
+    text-align: left;
+}
+
+td {
+    padding: 4px 8px; 
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #e2e2e2;
+}

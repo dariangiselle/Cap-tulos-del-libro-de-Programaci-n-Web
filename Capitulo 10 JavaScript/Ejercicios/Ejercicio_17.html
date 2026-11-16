@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 17 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.17</title>
+        <script>
+            var LONGITUD = 70;
+            var tortuga, liebre, temporizador = null;
+
+            function enteroAleatorio()
+            {
+                return Math.floor( 1 + Math.random() * 10 ); // entero i en el rango 1 <= i <= 10
+            }
+
+            function moverTortuga()
+            {
+                var i = enteroAleatorio();
+                if ( i <= 5 )
+                tortuga += 3;   // paso pesado rápido (50%)
+                else if ( i <= 7 )
+                tortuga -= 6;   // resbalón (20%)
+                else
+                tortuga += 1;   // paso pesado lento (30%)
+                if ( tortuga < 1 )
+                tortuga = 1;
+            }
+
+            function moverLiebre()
+            {
+                var i = enteroAleatorio();
+                if ( i <= 2 )
+                liebre += 0;    // dormir (20%)
+                else if ( i <= 4 )
+                liebre += 9;    // gran salto (20%)
+                else if ( i == 5 )
+                liebre -= 12;   // gran resbalón (10%)
+                else if ( i <= 8 )
+                liebre += 1;    // pequeño salto (30%)
+                else
+                liebre -= 2;    // pequeño resbalón (20%)
+                if ( liebre < 1 )
+                liebre = 1;
+            }
+
+            // arma una línea de 70 posiciones con la T, la H o el mensaje de ¡OUCH!
+            function armarLinea()
+            {
+                var linea = new Array( LONGITUD );
+                for ( var i = 0; i < LONGITUD; ++i )
+                {
+                    linea[ i ] = " ";
+                }
+                var posT = Math.min( tortuga, LONGITUD ) - 1;
+                var posH = Math.min( liebre, LONGITUD ) - 1;
+                var texto;
+
+                if ( tortuga == liebre )
+                {
+                    texto = linea.join( "" );
+                    texto = texto.substring( 0, posT ) + "¡OUCH!!!" + texto.substring( posT + 8 );
+                }
+                else
+                {
+                    linea[ posT ] = "T";
+                    linea[ posH ] = "H";
+                    texto = linea.join( "" );
+                }
+                return texto + "\n";
+            }
+
+            // un tic del reloj; devuelve true cuando la carrera terminó
+            function tic()
+            {
+                var pista = document.getElementById( "pista" );
+                moverTortuga();
+                moverLiebre();
+                pista.textContent += armarLinea();
+
+                var terminado = true;
+                if ( tortuga >= LONGITUD && liebre >= LONGITUD )
+                pista.textContent += "Es un empate.\n";
+                else if ( tortuga >= LONGITUD )
+                pista.textContent += "¡LA TORTUGA GANA!!! ¡YAY!!!\n";
+                else if ( liebre >= LONGITUD )
+                pista.textContent += "La liebre gana. Qué mal.\n";
+                else
+                terminado = false;
+
+                pista.scrollTop = pista.scrollHeight;
+                return terminado;
+            }
+
+            function detener()
+            {
+                if ( temporizador != null )
+                {
+                    clearInterval( temporizador );
+                    temporizador = null;
+                }
+                document.getElementById( "botonIniciar" ).disabled = false;
+            }
+
+            function iniciarCarrera()
+            {
+                detener();
+                tortuga = 1;
+                liebre = 1;
+                document.getElementById( "pista" ).textContent = "¡PUM!!!!!\n¡Y ARRANCAN!!!!!\n";
+                document.getElementById( "botonIniciar" ).disabled = true;
+
+                var milisegundos = parseInt( document.getElementById( "velocidad" ).value );
+                if ( milisegundos == 0 )
+                {
+                    while ( !tic() ) { }
+                    detener();
+                }
+                else
+                {
+                    temporizador = setInterval( function() { if ( tic() ) { detener(); } }, milisegundos );
+                }
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonIniciar" ).addEventListener( "click", iniciarCarrera, false );
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+        <style type="text/css">
+            pre#pista {font-family: monospace;
+                 border: 1px solid black;
+                 padding: 6px;
+                 height: 18em;
+                 overflow: auto;
+                 background-color: #f4f4f4;}
+
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Ejercicio 10.17 La tortuga y la liebre</h1>
+        <p>
+            La carrera tiene 70 posiciones y los dos animales empiezan en la posición 1. Con cada tic del reloj
+            se muestra una línea con la <b>T</b> de la tortuga y la <b>H</b> de la liebre. Si caen en la misma posición,
+            la tortuga muerde a la liebre y aparece <b>¡OUCH!!!</b>
+        </p>
+        <p>
+        <label><strong>Velocidad:</strong>
+            <select id = "velocidad">
+            <option value = "1000">1 tic por segundo</option>
+            <option value = "250">4 tics por segundo</option>
+            <option value = "0">Instantánea</option>
+            </select>
+        </label>
+        <input id = "botonIniciar" type = "button" value = "Iniciar carrera">
+        </p>
+        <pre id = "pista"></pre>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_16.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_1.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

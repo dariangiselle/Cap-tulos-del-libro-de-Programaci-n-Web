@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 8 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.8</title>
+        
+        <script type="text/javascript">
+            document.writeln( "<h1>Ejercicio 10.8</h1>" );
+            document.writeln( "<p style=\"color: #2c3e50;\"><b>Escriba instrucciones de JavaScript para realizar cada una de las siguientes tareas:</b></p>" );
+
+            // Inciso a
+            document.writeln( "<p><b>a) Mostrar el valor del séptimo elemento del arreglo f.</b><br>" );
+            document.writeln( "<code>document.writeln( f[ 6 ] );</code>.</span></p>" );
+
+            // Inciso b
+            document.writeln( "<p><b>b) Inicializar cada uno de los cinco elementos del arreglo unidimensional g en 8.</b><br>" );
+            document.writeln( "<code>var g = [ 8, 8, 8, 8, 8 ];</code></p>" );
+
+            // Inciso c
+            document.writeln( "<p><b>c) Calcular el total de los elementos del arreglo c, que contiene 100 elementos numéricos.</b><br>" );
+            document.writeln( "<code>var total = 0;<br>for ( var i = 0; i &lt; c.length; ++i ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;total += c[ i ];<br>}</code></p>" );
+
+            // Inciso d
+            document.writeln( "<p><b>d) Copiar el arreglo a de 11 elementos en la primera porción del arreglo b, que contiene 34 elementos.</b><br>" );
+            document.writeln( "<code>for ( var i = 0; i &lt; a.length; ++i ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;b[ i ] = a[ i ];<br>}</code></p>" );
+
+            // Inciso e
+            document.writeln( "<p><b>e) Determinar e imprimir el valor más pequeño y el más grande contenido en el arreglo w de 99 elementos de punto flotante.</b><br>" );
+            document.writeln( "<code>var min = w[ 0 ];<br>var max = w[ 0 ];<br>for ( var i = 1; i &lt; w.length; ++i ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if ( w[ i ] &lt; min ) { min = w[ i ]; }<br>&nbsp;&nbsp;&nbsp;&nbsp;if ( w[ i ] &gt; max ) { max = w[ i ]; }<br>}<br>document.writeln( \"Mínimo: \" + min + \"&lt;br&gt;Máximo: \" + max );</code></p>" );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h1 {
+                color: #1abc9c;
+            }
+            p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            code {
+                color: #c0392b;
+                background-color: #ecf0f1;
+                padding: 2px 5px;
+                border-radius: 4px;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_7.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_9.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

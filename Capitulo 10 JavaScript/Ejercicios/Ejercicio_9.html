@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 9 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.9</title>
+        
+        <script type="text/javascript">
+            document.writeln( "<h1>Ejercicio 10.9</h1>" );
+            document.writeln( "<p style=\"color: #2c3e50;\"><b>Considere un arreglo de dos por tres que almacena enteros.</b></p>" );
+
+            // Inciso a
+            document.writeln( "<p><b>a) Escriba una instrucción para declarar y crear el arreglo t.</b><br>" );
+            document.writeln( "<code>var t = [ [ 0, 0, 0 ], [ 0, 0, 0 ] ];</code></p>" );
+
+            // Inciso b
+            document.writeln( "<p><b>b) ¿Cuántas filas tiene t?</b><br>" );
+            document.writeln( "<strong style=\"color: #2980b9;\">2</strong> filas (índices 0 y 1).</p>" );
+
+            // Inciso c
+            document.writeln( "<p><b>c) ¿Cuántas columnas tiene t?</b><br>" );
+            document.writeln( "<strong style=\"color: #27ae60;\">3</strong> columnas (índices 0, 1 y 2).</p>" );
+
+            // Inciso d
+            document.writeln( "<p><b>d) ¿Cuántos elementos tiene t?</b><br>" );
+            document.writeln( "<strong style=\"color: #8e44ad;\">6</strong> elementos en total (2 filas × 3 columnas).</p>" );
+
+            // Inciso e
+            document.writeln( "<p><b>e) Escriba los nombres de todos los elementos en la fila 1 de t.</b><br>" );
+            document.writeln( "<code>t[ 1 ][ 0 ]</code>, <code>t[ 1 ][ 1 ]</code> y <code>t[ 1 ][ 2 ]</code></p>" );
+
+            // Inciso f
+            document.writeln( "<p><b>f) Escriba los nombres de todos los elementos en la tercera columna de t.</b><br>" );
+            document.writeln( "<code>t[ 0 ][ 2 ]</code> y <code>t[ 1 ][ 2 ]</code>.</p>" );
+
+            // Inciso g
+            document.writeln( "<p><b>g) Escriba una sola instrucción para establecer el elemento de t en la fila 1 y la columna 2 en cero.</b><br>" );
+            document.writeln( "<code>t[ 1 ][ 2 ] = 0;</code></p>" );
+
+            // Inciso h
+            document.writeln( "<p><b>h) Escriba una serie de instrucciones para inicializar cada elemento de t en cero.</b><br>" );
+            document.writeln( "<code>t[ 0 ][ 0 ] = 0;<br>t[ 0 ][ 1 ] = 0;<br>t[ 0 ][ 2 ] = 0;<br>t[ 1 ][ 0 ] = 0;<br>t[ 1 ][ 1 ] = 0;<br>t[ 1 ][ 2 ] = 0;</code></p>" );
+
+            // Inciso i
+            document.writeln( "<p><b>i) Escriba una instrucción for anidada para inicializar cada elemento de t en cero.</b><br>" );
+            document.writeln( "<code>for ( var i = 0; i &lt; t.length; ++i ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;for ( var j = 0; j &lt; t[ i ].length; ++j ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t[ i ][ j ] = 0;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></p>" );
+
+            // Inciso j
+            document.writeln( "<p><b>j) Escriba una serie de instrucciones para determinar e imprimir el valor más pequeño en el arreglo t.</b><br>" );
+            document.writeln( "<code>var menor = t[ 0 ][ 0 ];<br>for ( var i = 0; i &lt; t.length; ++i ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;for ( var j = 0; j &lt; t[ i ].length; ++j ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( t[ i ][ j ] &lt; menor ) { menor = t[ i ][ j ]; }<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br>document.writeln( \"Menor: \" + menor );</code></p>" );
+
+            // Inciso k
+            document.writeln( "<p><b>k) Escriba una instrucción sin repetición para mostrar los elementos de la primera fila de t.</b><br>" );
+            document.writeln( "<code>document.writeln( t[ 0 ][ 0 ] + \" \" + t[ 0 ][ 1 ] + \" \" + t[ 0 ][ 2 ] );</code></p>" );
+
+            // Inciso l
+            document.writeln( "<p><b>l) Escriba una serie de instrucciones para imprimir el arreglo t en un formato tabular ordenado. Liste los índices de columnas como encabezados a lo largo de la parte superior y liste los índices de fila en la parte izquierda de cada fila.</b><br>" );
+            document.writeln( "<code>document.writeln( \"&lt;table border='1'&gt;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;0&lt;/th&gt;&lt;th&gt;1&lt;/th&gt;&lt;th&gt;2&lt;/th&gt;&lt;/tr&gt;\");<br>for ( var i = 0; i &lt; t.length; ++i ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;document.writeln( \"&lt;tr&gt;&lt;th&gt; \" + i + \" &lt;/th&gt;\");<br>&nbsp;&nbsp;&nbsp;&nbsp;for ( var j = 0; j &lt; t[ i ].length; ++j ) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.writeln( \"&lt;td&gt; \" + t[ i ][ j ] + \" &lt;/td&gt;\");<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;document.writeln( \"&lt;/tr&gt;\");<br>}<br>document.writeln( \"&lt;/table&gt;\");</code></p>" );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h1 {
+                color: #1abc9c;
+            }
+            p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            code {
+                color: #c0392b;
+                background-color: #ecf0f1;
+                padding: 2px 5px;
+                border-radius: 4px;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_8.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_10.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

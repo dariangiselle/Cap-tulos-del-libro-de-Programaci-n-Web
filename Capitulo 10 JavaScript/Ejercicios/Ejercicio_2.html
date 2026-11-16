@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 2 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.2</title>
+        
+        <script type="text/javascript">
+            document.writeln( "<h1>Ejercicio 10.2</h1>" );
+            document.writeln( "<p style=\"color: #2c3e50;\"><b>Indique si cada uno de los siguientes enunciados es verdadero o falso. Si es falso, explique por qué.</b></p>" );
+
+            // Inciso a
+            document.writeln( "<p><b>a) Un arreglo puede almacenar muchos tipos diferentes de valores.</b><br>" );
+            document.writeln( "<b>Respuesta:</b> <strong style=\"color: #27ae60;\">Verdadero</strong></p>" );
+
+            // Inciso b
+            document.writeln( "<p><b>b) Por lo general el índice de un arreglo debe ser un valor de punto flotante.</b><br>" );
+            document.writeln( "<b>Respuesta:</b> <strong style=\"color: #e74c3c;\">Falso</strong>. <b>¿Por qué?</b> Los índices de un arreglo deben ser números o expresiones enteras no negativos para poder acceder las posiciones de memoria de los elementos.</p>" );
+
+            // Inciso c
+            document.writeln( "<p><b>c) Un elemento individual de un arreglo que se pasa a una función y se modifica en ésta debe contener el valor modificado cuando la función invocada complete su ejecución.</b><br>" );
+            document.writeln( "<b>Respuesta:</b> <strong style=\"color: #e74c3c;\">Falso</strong>. <b>¿Por qué?</b> Cuando se pasa un elemento individual de un arreglo a una función, se pasa por valor y la función trabaja con una copia independiente. Cambiar esa variable dentro de la función no altera el elemento original dentro del arreglo.</p>" );
+        </script>
+
+        <style type="text/css">
+            body {
+                font-family: Arial, sans-serif;
+                color: #333;
+                margin: 20px;
+            }
+            h1 {
+                color: #1abc9c;
+            }
+            p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_1.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_3.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 14 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.14</title>
+        <script>
+            var TIROS = 36000;
+
+            function tirarDados()
+            {
+                // tiros[ dado1 ][ dado2 ]: número de veces que salió cada combinación (índices del 1 al 6)
+                var tiros = new Array( 7 );
+                for ( var i = 0; i < 7; ++i )
+                {
+                    tiros[ i ] = new Array( 7 );
+                    for ( var j = 0; j < 7; ++j )
+                    {
+                        tiros[ i ][ j ] = 0;
+                    }
+                }
+
+                for ( var n = 0; n < TIROS; ++n )
+                {
+                    var dado1 = Math.floor( 1 + Math.random() * 6 );
+                    var dado2 = Math.floor( 1 + Math.random() * 6 );
+                    ++tiros[ dado1 ][ dado2 ];
+                }
+
+                // se suman las combinaciones que dan la misma suma (2 a 12)
+                var sumas = new Array( 13 );
+                for ( i = 0; i < 13; ++i )
+                {
+                    sumas[ i ] = 0;
+                }
+                for ( var d1 = 1; d1 <= 6; ++d1 )
+                {
+                    for ( var d2 = 1; d2 <= 6; ++d2 )
+                    {
+                        sumas[ d1 + d2 ] += tiros[ d1 ][ d2 ];
+                    }
+                }
+
+                // tabla de las 36 combinaciones
+                var combinaciones = "<table class = 'datos'><tr><th>dado 1 \\ dado 2</th>";
+                for ( d2 = 1; d2 <= 6; ++d2 )
+                {
+                    combinaciones += "<th>" + d2 + "</th>";
+                }
+                combinaciones += "</tr>";
+                for ( d1 = 1; d1 <= 6; ++d1 )
+                {
+                    combinaciones += "<tr><th>" + d1 + "</th>";
+                    for ( d2 = 1; d2 <= 6; ++d2 )
+                    {
+                        combinaciones += "<td>" + tiros[ d1 ][ d2 ] + "</td>";
+                    }
+                    combinaciones += "</tr>";
+                }
+                combinaciones += "</table>";
+
+                // tabla de las sumas con lo esperado y si el resultado es razonable
+                var todasRazonables = true;
+                var resultados = "<table class = 'datos'><tr><th>Suma</th><th>Formas de obtenerla</th><th>Frecuencia</th>" +
+                    "<th>Porcentaje</th><th>Frecuencia esperada</th><th>Diferencia</th><th>es razonable?</th></tr>";
+                for ( var suma = 2; suma <= 12; ++suma )
+                {
+                    var formas = 6 - Math.abs( 7 - suma );
+                    var esperada = TIROS * formas / 36;
+                    var diferencia = ( sumas[ suma ] - esperada ) / esperada * 100;
+                    var razonable = Math.abs( diferencia ) <= 10; // se acepta hasta un 10% de diferencia
+                    if ( !razonable )
+                    {
+                        todasRazonables = false;
+                    }
+                    resultados += "<tr><td>" + suma + "</td><td>" + formas + "</td><td>" + sumas[ suma ] + "</td><td>" +
+                    ( sumas[ suma ] / TIROS * 100 ).toFixed( 2 ) + "%</td><td>" + esperada + "</td><td>" +
+                    diferencia.toFixed( 2 ) + "%</td><td>" + ( razonable ? "Sí" : "No" ) + "</td></tr>";
+                }
+                resultados += "</table>";
+
+                var conclusion = todasRazonables
+                    ? "Los totales son razonables: cada suma se acerca a lo esperado (el 7 es la más frecuente y el 2 y el 12 las menos frecuentes; el 7 sale cerca de 1/6 de los tiros)."
+                    : "Alguna suma se alejó más de lo esperado. Vuelva a tirar los dados para comparar.";
+
+                document.getElementById( "resultados" ).innerHTML =
+                "<h3>Frecuencia de cada suma</h3>" + resultados +
+                "<p><strong>" + conclusion + "</strong></p>" +
+                "<h3>Veces que salió cada combinación</h3>" + combinaciones;
+            }
+
+            function iniciar()
+            {
+                document.getElementById( "botonTirar" ).addEventListener( "click", tirarDados, false );
+                tirarDados();
+            }
+
+            window.addEventListener( "load", iniciar, false );
+        </script>
+
+            <style type="text/css">
+                table.datos {border-collapse: collapse;}
+                table.datos td, table.datos th {border: 1px solid black;
+                                      padding: 4px 12px;
+                                      text-align: center;}
+                table.datos th {color: white; background-color: orange;}
+                body {
+                    font-family: Arial, sans-serif;
+                    color: #333;
+                    margin: 20px;
+                    background-color: #f9f9f9;
+                }
+                
+                nav {
+                    background-color: lightblue;
+                    padding: 10px;
+                    text-align: center;
+                    border: 2px solid navy;
+                }
+
+                nav a {
+                    color: navy;
+                    text-decoration: none;
+                    font-weight: bold;
+                    margin: 10px;
+                }
+
+                nav a:hover {
+                    color: red;
+                    text-decoration: underline;
+                }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>Ejercicio 10.14</h1>
+        <p>
+            Se tira un par de dados 36,000 veces. Un arreglo bidimensional guarda cuántas veces salió cada
+            combinación y con él se calcula cuántas veces apareció cada suma.
+        </p>
+        <p><input id = "botonTirar" type = "button" value = "Tirar los dados de nuevo"></p>
+        <div id = "resultados"></div>
+        <hr>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_13.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_15.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

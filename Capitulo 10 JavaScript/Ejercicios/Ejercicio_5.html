@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 5 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.5</title>
+        
+        <script type="text/javascript">
+            document.writeln( "<h1>Ejercicio 10.5</h1>" );
+            document.writeln( "<p><b>Encuentre el o los errores en cada uno de los siguientes segmentos de programa y corríjalos:</b></p>" );
+
+            // Inciso a
+            document.writeln( "<p><b>a)</b><br>" );
+            document.writeln( "<code>var b = new Array( 10 );<br>var longitud = b.length;<br>for ( var i = 0; i &lt;= longitud; ++i )<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;b[ i ] = 1;<br>}</code></p>" );
+            document.writeln( "<p><b>Error y corrección:</b><br>" );
+
+            document.writeln( "El error está en la condición del ciclo for: i &lt;= longitud. Como los arreglos en JavaScript se indexan desde 0 hasta longitud - 1, usar el operador menor o igual accederá a b[10], eso está fuera de los límites del arreglo y se hará un desbordamiento creando un elemento indefinido.");
+            document.writeln( "<hr>" );
+
+            document.writeln( "<b>Código corregido:</b><br>" );
+            document.writeln( "<code>var b = new Array( 10 );<br>var longitud = b.length;<br>for ( var i = 0; i &lt; longitud; ++i )<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;b[ i ] = 1;<br>}</code></p>" );
+
+            document.writeln( "<hr>" );
+
+            // Inciso b
+            document.writeln( "<p><b>b)</b><br>" );
+            document.writeln( "<code>var a = [ [ 1, 2 ], [ 3, 4 ] ];<br>a[ 1, 1 ] = 5;</code></p>" );
+            document.writeln( "<p><b>Error y corrección:</b><br>" );
+
+            document.writeln( "La forma de acceder al arreglo bidimensional: a[ 1, 1 ] está mal porque en JavaScript la coma dentro de los corchetes se toma como el operador coma, evaluando la expresión y tomando solo el último valor en lugar de tomar filas y columnas independientemente.<br>" );
+            document.writeln( "<hr>" );
+
+            document.writeln( "<b>Código corregido:</b><br>" );
+            document.writeln( "<code>var a = [ [ 1, 2 ], [ 3, 4 ] ];<br>a[ 1 ][ 1 ] = 5;</code></p>" );
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_4.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_6.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>

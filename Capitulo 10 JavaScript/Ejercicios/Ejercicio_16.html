@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- Ejercicio 10. 16 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 10.16</title>
+        <script>
+            document.writeln("<h1>Ejercicio 10.16 La criba de Eratóstenes</h1>");
+
+            var primos = new Array( 1000 );
+            for ( var i = 0; i < primos.length; ++i )
+            {
+                primos[ i ] = 1;
+            }
+
+            primos[ 0 ] = 0;
+            primos[ 1 ] = 0;
+
+            for ( i = 2; i < primos.length; ++i )
+            {
+                if ( primos[ i ] == 1 )
+                {
+                    for ( var j = i + i; j < primos.length; j += i )
+                    {
+                        primos[ j ] = 0;
+                    }
+                }
+            }
+
+            // los índices que siguen en 1 son los números primos
+            var lista = [];
+            for ( i = 1; i < primos.length; ++i )
+            {
+                if ( primos[ i ] == 1 )
+                {
+                    lista.push( i );
+                }
+            }
+
+            document.writeln("<p>Números primos entre 1 y 999 (se ignora el elemento 0 del arreglo):</p>");
+            document.writeln("<p><b>" + lista.join( ", " ) + "</b></p>");
+            document.writeln("<p>Se encontraron <strong>" + lista.length + "</strong> números primos.</p>");
+        </script>
+
+        <style type="text/css">
+            nav {
+                background-color: lightblue;
+                padding: 10px;
+                text-align: center;
+                border: 2px solid navy;
+            }
+
+            nav a {
+                color: navy;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px;
+            }
+
+            nav a:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <script type="text/javascript">
+            document.writeln(
+                '<nav>' +
+                '<a href="Ejercicio_15.html">← Anterior</a> | ' +
+                '<a href="../index_cap10.html">Menú del Capítulo 10</a> | ' +
+                '<a href="Ejercicio_17.html">Siguiente →</a>' +
+                '</nav>' +
+                '<hr>'
+            );
+        </script>
+    </body>
+</html>
